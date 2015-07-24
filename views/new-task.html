@@ -1,0 +1,16 @@
+<h1>New task</h1>
+<input type="text" ng-model="newTask.name">
+<input type="checkbox" ng-model="newTask.spin">
+<input type="date" ng-model="newTask.date">
+<input type="number" name="quantity" ng-model="newTask.price">
+Name: {{newTask.name}}, spin: {{newTask.spin}}, Start: {{newTask.date}},
+Price: {{newTask.price}}
+<button ng-click="save()">Save</button>
+<ul>
+  <li ng-repeat="task in tasks track by task.$id">
+    Name: {{task.name}}, spin: {{task.spin}}, Start: {{task.date}},
+    Price: {{task.price}}
+    <button ng-click="remove(task)">DELETE</button>
+  </li>
+  <li ng-hide="tasks.length">No items found</li>
+</ul>

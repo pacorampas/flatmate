@@ -1,0 +1,22 @@
+<h1>Singup</h1>
+
+<form name="singupForm">
+  <div>
+    <input type="text" ng-model="email" name="email" ng-required="true" ng-pattern="regexEmail">
+    <p class="error" ng-show="validate && singupForm.email.$error.required">Required!</p>
+    <p class="error" ng-show="validate && singupForm.email.$error.pattern">Should be a valid email!</p>
+  </div>
+  
+  <div>
+    <input type="password" ng-model="password" name="password" ng-required="true" ng-minlength="6">
+    <p class="error" ng-show="validate && singupForm.password.$error.minlength">Min length!</p>
+    <p class="error" ng-show="validate && singupForm.password.$error.required">Required!</p>
+  </div>
+  
+  <div>
+    <input type="password" ng-model="passwordRepeat" name="passwordRepeat" ng-required="true">
+    <p class="error" ng-show="validate && singupForm.password.$viewValue !== singupForm.passwordRepeat.$viewValue">Should be equal to password</p>
+  </div>
+
+  <button ng-click="save()">ACCEPT</button>
+</form>
