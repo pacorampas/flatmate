@@ -1,5 +1,4 @@
-App.config(['$routeProvider',
-  function($routeProvider) {
+App.config(['$routeProvider', function($routeProvider) {
     $routeProvider.
       when('/login', {
         templateUrl: 'views/login.html',

@@ -1,4 +1,4 @@
-App.controller('newTaskController', function($scope, taskFactory) {
+App.controller('newTaskController', function($scope, taskFactory, $firebaseAuth) {
   $scope.tasks = taskFactory.getAll();
   $scope.newTask = taskFactory.getNewTask();
   
