@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app="flatMate" lang="en">
+<html lang="en">
 <head>
   <title>Flat mate</title>
   <!-- css -->
@@ -16,6 +16,7 @@
   <script type="text/javascript" src="controllers/newTaskController.js"></script>
   <script type="text/javascript" src="controllers/loginController.js"></script>
   <script type="text/javascript" src="controllers/singupController.js"></script>
+  <script type="text/javascript" src="controllers/homeController.js"></script>
   <script type="text/javascript" src="factories/taskFactory.js"></script>
 
   <script type="text/javascript" src="directives/fm-button.js"></script>
@@ -25,7 +26,7 @@
   <script src="libs/firebase.js"></script>
   <script type="text/javascript" src="node_modules/angularfire/dist/angularfire.min.js"></script>
 </head>
-<body ng-view>
-  
+<body>
+  <section ng-view></section>
 </body>
 </html>

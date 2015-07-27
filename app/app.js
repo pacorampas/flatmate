@@ -1,24 +1,53 @@
 var App = angular.module('flatMate', ['firebase', 'ngRoute']);
 
+window.onload = function() {
+  angular.bootstrap(document.body, ['flatMate']);
+}
 
 App.run(function($rootScope, $location, $firebaseAuth) {
-  var ref = new Firebase("https://flatmate.firebaseio.com");
-  $rootScope.auth = $firebaseAuth(ref);
+  initAuth();
 
-  $rootScope.$on('$locationChangeStart', function(event) {
-    isAutenticated();
-  });
+  //TODO, make a factory
+  function initAuth() {
+    //it is to prevent that event $locationChangeStart start before of onOauth.
+    //Because we won't be able to go to a private path at first time.
+    var onAuthReady = false;
 
-  $rootScope.auth.$onAuth(function(authData) {
-    $rootScope.user = authData;
-    isAutenticated();
-  });
+    var ref = new Firebase("https://flatmate.firebaseio.com");
+    $rootScope.auth = $firebaseAuth(ref);
 
-  function isAutenticated() {
-    if (!$rootScope.user) {
-      $location.path('login');
-      return;
+    $rootScope.$on('$locationChangeStart', function(event) {
+      if (!onAuthReady) {
+        return;
+      }
+
+      if (isAutenticated() && isPublicPath() ||
+          !isAutenticated() && !isPublicPath()) {
+        event.preventDefault();
+      }
+    });
+
+    $rootScope.auth.$onAuth(function(authData) {
+      onAuthReady = true;
+      $rootScope.user = authData;
+      if (isAutenticated() ) {
+        $location.path('home');
+      } else {
+        $location.path('login');
+      }
+    });
+
+    function isAutenticated() {
+      return $rootScope.user ? true : false;
     }
-    $location.path('new-task');
+
+    function isPublicPath() {
+      var path = $location.path();
+      if (path.search('login') >= 0 || path.search('singup') >= 0) {
+        return true;
+      } else {
+        return false;
+      }
+    }
   }
 });
