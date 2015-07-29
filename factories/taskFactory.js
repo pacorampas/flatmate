@@ -45,5 +45,4 @@ App.factory('taskFactory', function($firebaseArray, $window) {
       firebaseTasks.$remove(task);
     }
   };
-  
 });

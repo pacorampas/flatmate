@@ -20,3 +20,26 @@ App.directive('email', function() {
     }
   };
 });
+
+var GROUP_EMAIL_REGEXP = /^([\w+-.%]+@[\w-.]+\.[A-Za-z]{2,4},?\s*?)+$/;
+App.directive('groupemail', function() {
+  return {
+    require: 'ngModel',
+    link: function(scope, elm, attrs, ctrl) {
+      ctrl.$validators.groupemail = function(modelValue, viewValue) {
+        if (ctrl.$isEmpty(modelValue)) {
+          // consider empty models to be valid
+          return true;
+        }
+
+        if (GROUP_EMAIL_REGEXP.test(viewValue)) {
+          // it is valid
+          return true;
+        }
+
+        // it is invalid
+        return false;
+      };
+    }
+  };
+});

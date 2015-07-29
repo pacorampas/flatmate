@@ -30,9 +30,9 @@ App.run(function($rootScope, $location, $firebaseAuth) {
     $rootScope.auth.$onAuth(function(authData) {
       onAuthReady = true;
       $rootScope.user = authData;
-      if (isAutenticated() ) {
-        $location.path('home');
-      } else {
+      if (isAutenticated()) {
+        $location.path('new-flat');
+      } else if (!isPublicPath()) {
         $location.path('login');
       }
     });

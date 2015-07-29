@@ -1,7 +1,5 @@
-App.controller('singupController', function($scope, $firebaseAuth) {
-  $scope.name = 'yo';
-
-  var ref = new Firebase("https://flatmate.firebaseio.com");
+App.controller('singupController', function($scope, $firebaseAuth, $firebaseObject) {
+  var ref = new Firebase('https://flatmate.firebaseio.com');
   var Auth = $firebaseAuth(ref);
 
   $scope.email = '';
@@ -22,6 +20,18 @@ App.controller('singupController', function($scope, $firebaseAuth) {
         password: $scope.password
       }).then(function(userData) {
         alert("User created with uid: " + userData.uid);
+        
+        var userDB = $firebaseObject(ref.child('users').child(userData.uid));
+        userDB.$value = {
+          email: $scope.email,
+        };
+
+        userDB.$save().then(function() {
+          alert('User saved!');
+        }).catch(function(error) {
+          alert('Error!');
+        });
+
       }).catch(function(error) {
         //TODO show a error if the email is taken
         if (error) {

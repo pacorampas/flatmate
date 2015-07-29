@@ -8,9 +8,9 @@ App.config(['$routeProvider', function($routeProvider) {
         templateUrl: 'views/singup.html',
         controller: 'singupController'
       }).
-      when('/home', {
-        templateUrl: 'views/home.html',
-        controller: 'homeController'
+      when('/new-flat', {
+        templateUrl: 'views/new-flat.html',
+        controller: 'newFlatController'
       }).
       when('/new-task', {
         templateUrl: 'views/new-task.html',
