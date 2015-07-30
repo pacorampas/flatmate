@@ -1,17 +1,24 @@
-<h1>New task</h1>
-<input type="text" ng-model="newTask.name">
-<input type="checkbox" ng-model="newTask.spin">
-<input type="date" ng-model="newTask.date">
-<input type="number" name="quantity" ng-model="newTask.price">
-Name: {{newTask.name}}, spin: {{newTask.spin}}, Start: {{newTask.date}},
-Price: {{newTask.price}}
-<button ng-click="save()">Save</button>
-<ul>
-  <li ng-repeat="task in tasks track by task.$id">
-    Name: {{task.name}}, spin: {{task.spin}}, Start: {{task.date}},
-    Price: {{task.price}}
-    <button ng-click="remove(task)">DELETE</button>
-  </li>
-  <li ng-hide="tasks.length">No items found</li>
-</ul>
-<button ng-click="auth.$unauth()">Logout</button>
+<header class="fm-header">
+  <button class="fm-icon">
+    <i class="fa fa-arrow-left"></i>
+  </button>
+  <h4 class="fm-regular">Nueva Tarea</h4>
+  <button ng-click="auth.$unauth()">Logout</button>
+</header>
+
+<form novalidate class="fm-form" name="newTaskForm">
+  <div class="fm-form-row">
+    <input class="fm-input" type="text" ng-model="newTask.title" name="title" ng-required="true" placeholder="the task description...">
+    <p class="fm-input-error" ng-show="newTaskForm.$submitted && newTaskForm.title.$error.required">Required!</p>
+  </div>
+
+  <div class="fm-select fm-form-row" fm-select
+      options="mates"
+      selected="newTask.who"
+      default-value="'Cualquiera'">
+  </div>
+
+  <div class="fm-wrapper-push-bottom">
+    <button class="fm-button" fm-button loading="acceptButton.loading" ng-click="save()">ACCEPT</button>
+  </div>
+</form>

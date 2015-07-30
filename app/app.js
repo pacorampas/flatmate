@@ -4,7 +4,7 @@ window.onload = function() {
   angular.bootstrap(document.body, ['flatMate']);
 }
 
-App.run(function($rootScope, $location, $firebaseAuth) {
+App.run(function($rootScope, $location, $firebaseAuth, usersFactory, flatFactory) {
   initAuth();
 
   //TODO, make a factory
@@ -30,7 +30,18 @@ App.run(function($rootScope, $location, $firebaseAuth) {
     $rootScope.auth.$onAuth(function(authData) {
       onAuthReady = true;
       $rootScope.user = authData;
-      if (isAutenticated()) {
+
+      if (authData) {
+        usersFactory.getUserByKey(authData.uid).then(function(user) {
+          $rootScope.user.stored = user;
+          flatFactory.getFlatByKey(user.flats[0]).then(function(flat) {
+            $rootScope.user.flat = flat;
+            $rootScope.$broadcast('flatLoaded', [1,2,3]);
+          })
+        });
+      }
+
+      if (isAutenticated() && isPublicPath()) {
         $location.path('new-flat');
       } else if (!isPublicPath()) {
         $location.path('login');

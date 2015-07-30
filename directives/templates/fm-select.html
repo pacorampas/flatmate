@@ -1,0 +1,9 @@
+<span class="fm-input">{{selectedValue}}</span>
+<ul class="fm-drop-down">
+  <li ng-if="defaultValue" class="fm-input" ng-click="clickOnItem(-1)">
+    {{defaultValue}}
+  </li>
+  <li class="fm-input" ng-click="clickOnItem($index)" ng-repeat="option in options track by $index">
+    {{option}}
+  </li>
+</ul>

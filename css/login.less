@@ -10,6 +10,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  list-style: none;
 }
 
 input, button {
@@ -87,6 +88,7 @@ html, body {
 }
 
 .fm-input {
+  display: inline-block;
   width: 100%;
   height: 42px;
   padding: 8px 16px;
@@ -95,6 +97,10 @@ html, body {
   font-size: 14px;
   color: #1a3331;
   background: #fff;
+
+  .fm-select & {
+    background: #eee;
+  }
 }
 
 .fm-input-error {
@@ -170,3 +176,24 @@ h4 {
 .fm-regular {
   font-weight: normal;
 }
+
+/* select */
+.fm-select {
+  > ul {
+    > li {
+      display: inline-block;
+    }
+  }
+}
+
+.fm-drop-down {
+  display: none;
+  width: 100%;
+  position: absolute;
+  top: 0;
+
+  .open & {
+    display: block;
+  }
+}
+

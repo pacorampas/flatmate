@@ -33,6 +33,11 @@ App.factory('flatFactory', function($firebaseArray, $window, $firebaseObject) {
     getAll: function() {
       return firebaseFlats;
     },
+    getFlatByKey: function(key) {
+      var refFlatByKey = ref.child(key);
+      var flatByKey = $firebaseObject(refFlatByKey);
+      return flatByKey.$loaded();
+    },
     save: function(flat) {
       if (!online) {
         return;
