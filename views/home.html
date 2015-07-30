@@ -1,0 +1,22 @@
+<header class="fm-header corporative">
+  <button class="fm-icon">
+    <i class="fa fa-bars"></i>
+  </button>
+  <h4 class="fm-regular">Home</h4>
+  <button ng-click="auth.$unauth()">Logout</button>
+</header>
+
+<section fm-tabs>
+  <li fm-tab class="fm-tab" ng-click="changePaneTo(0)">Mis tareas</li>
+  <li fm-tab class="fm-tab" ng-click="changePaneTo(1)">Tareas</li>
+  <div fm-indicator class="fm-indicator"></div>
+</section>
+
+<section class="fm-wrapper-panes" fm-panes selected="paneActive">
+  <div fm-pane class="fm-pane">
+    Mis tareas {{paneActive}}
+  </div>
+  <div fm-pane class="fm-pane">
+    Otras tareas
+  </div>
+</section>

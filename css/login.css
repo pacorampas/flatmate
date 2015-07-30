@@ -34,6 +34,10 @@ body {
 .fm-header .fm-icon ~ h4 {
   margin-left: 16px;
 }
+.fm-header.corporative {
+  background: #51a5a1;
+  color: #ffffff;
+}
 .fm-form {
   padding: 0 16px;
 }
@@ -121,23 +125,27 @@ body {
   font-size: 24px;
   background: transparent;
   border: 0;
+  color: inherit;
+}
+.fm-icon i {
+  color: inherit;
 }
 /* typography */
 h1 {
   font-size: 32px;
-  color: #1a3331;
+  color: inherit;
 }
 h2 {
   font-size: 28px;
-  color: #1a3331;
+  color: inherit;
 }
 h3 {
   font-size: 26px;
-  color: #1a3331;
+  color: inherit;
 }
 h4 {
   font-size: 20px;
-  color: #1a3331;
+  color: inherit;
 }
 .fm-regular {
   font-weight: normal;
@@ -154,4 +162,40 @@ h4 {
 }
 .open .fm-drop-down {
   display: block;
+}
+/* tabs */
+.fm-tabs {
+  position: relative;
+  width: 100%;
+  height: 48px;
+  background: #51a5a1;
+  color: #ffffff;
+}
+.fm-tabs .fm-tab {
+  float: left;
+  height: 100%;
+  line-height: 48px;
+  padding: 0 12px;
+  color: inherit;
+  cursor: pointer;
+}
+.fm-indicator {
+  position: absolute;
+  bottom: 0;
+  height: 1.5px;
+  width: 0;
+  background: #ffffff;
+  transition: left 1s, width 1s;
+}
+.fm-wrapper-panes {
+  transition: transform 1s;
+}
+.fm-panes {
+  width: 100%;
+  background: red;
+  white-space: nowrap;
+}
+.fm-panes .fm-pane {
+  width: 100%;
+  display: inline-block;
 }

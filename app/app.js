@@ -42,7 +42,7 @@ App.run(function($rootScope, $location, $firebaseAuth, usersFactory, flatFactory
       }
 
       if (isAutenticated() && isPublicPath()) {
-        $location.path('new-flat');
+        $location.path('home');
       } else if (!isPublicPath()) {
         $location.path('login');
       }
