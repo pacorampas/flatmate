@@ -14,9 +14,31 @@
 
 <section class="fm-wrapper-panes" fm-panes selected="paneActive">
   <div fm-pane class="fm-pane">
-    Mis tareas {{paneActive}}
+    <ul class="fm-cards-wrapper">
+      <li class="fm-card" ng-repeat="task in user.flat.tasks track by $index" ng-if="task.who | itIsMe :user.flat.mates">
+        <header>
+          <i class="fm-card-icon-type fa fa-align-left"></i>
+          <i class="fm-card-icon-settings fa fa-ellipsis-v"></i>
+        </header>
+        <p>{{task.title}}</p>
+      </li>
+    </ul>
   </div>
   <div fm-pane class="fm-pane">
-    Otras tareas
+    <ul class="fm-cards-wrapper">
+      <li class="fm-card" ng-repeat="task in user.flat.tasks track by $index">
+        <header>
+          <i class="fm-card-icon-type fa fa-align-left"></i>
+          <i class="fm-card-icon-settings fa fa-ellipsis-v"></i>
+        </header>
+        <p>
+          {{task.title}}
+          <span class="fm-cad-who">
+            <i class="fa fa-long-arrow-right"></i>
+            {{task.who | whoIs :user.flat.mates}}
+          </span>
+        </p>
+      </li>
+    </ul>
   </div>
 </section>

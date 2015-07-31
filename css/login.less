@@ -1,8 +1,4 @@
-@dark: #1a3331;
-@negative: #bf0310;
-@gray: #f6f7f8;
-@corporative: #51a5a1;
-@white: #fff;
+@import 'vars';
 
 [disabled] {
   opacity: 0.5;
@@ -185,6 +181,10 @@ h4 {
   color: inherit;
 }
 
+p {
+  font-size: 16px;
+}
+
 .fm-regular {
   font-weight: normal;
 }
@@ -242,11 +242,11 @@ h4 {
 
 .fm-panes {
   width: 100%;
-  background: red;
   white-space: nowrap;
 
   .fm-pane {
     width: 100%;
     display: inline-block;
+    vertical-align: top;
   }
 }
