@@ -10,6 +10,7 @@
 input,
 button {
   outline: none;
+  cursor: pointer;
 }
 input:-webkit-autofill {
   -webkit-box-shadow: 0 0 0px 1000px white inset;
@@ -20,7 +21,7 @@ body {
   height: 100%;
   background: #faf9f3;
   font-family: sans-serif;
-  overflow: hidden;
+  overflow-x: hidden;
 }
 .fm-header {
   height: 56px;
@@ -131,6 +132,9 @@ body {
 .fm-icon i {
   color: inherit;
 }
+.fm-icon.right {
+  float: right;
+}
 /* typography */
 h1 {
   font-size: 32px;
@@ -202,4 +206,14 @@ p {
   width: 100%;
   display: inline-block;
   vertical-align: top;
+  white-space: normal;
+}
+.fm-register-text-login {
+  text-align: center;
+  margin-bottom: 15px;
+}
+.fm-register-text-login a {
+  text-decoration: none;
+  font-weight: bold;
+  color: #1a3331;
 }

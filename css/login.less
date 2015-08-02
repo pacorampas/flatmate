@@ -13,6 +13,7 @@
 
 input, button {
   outline: none;
+  cursor: pointer;
 }
 
 input:-webkit-autofill {
@@ -24,7 +25,8 @@ html, body {
   height: 100%;
   background: #faf9f3;
   font-family: sans-serif;
-  overflow: hidden;
+  overflow-x: hidden;
+
 }
 
 .fm-header {
@@ -56,7 +58,7 @@ html, body {
   position: relative;
   box-shadow: 0px 1px 2px 0px rgba(50, 50, 50, 0.4);
 
-  &:first-child, 
+  &:first-child,
   &.first-child {
 
     .fm-input {
@@ -158,6 +160,10 @@ html, body {
   i {
     color: inherit;
   }
+
+  &.right {
+    float: right;
+  }
 }
 
 
@@ -249,5 +255,17 @@ p {
     width: 100%;
     display: inline-block;
     vertical-align: top;
+    white-space: normal;
+  }
+}
+
+.fm-register-text-login {
+  text-align: center;
+  margin-bottom: 15px;
+
+  a {
+    text-decoration: none;
+    font-weight: bold;
+    color: @dark;
   }
 }

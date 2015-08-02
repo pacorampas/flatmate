@@ -1,4 +1,4 @@
-App.controller('newTaskController', function($rootScope, $scope) {
+App.controller('newTaskController', function($rootScope, $scope, $window) {
   $scope.newTask = {
     title: '',
     who: -1,
@@ -25,6 +25,11 @@ App.controller('newTaskController', function($rootScope, $scope) {
     $rootScope.user.flat.$save().then(function() {
       console.log('saved task');
       $scope.acceptButton.loading = false;
+      $window.history.back();
     })
+  }
+
+  $scope.back = function() {
+    $window.history.back();
   }
 });

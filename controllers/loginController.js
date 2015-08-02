@@ -1,7 +1,7 @@
 App.controller('loginController', function($rootScope, $scope, $firebaseAuth) {
   $scope.email = '';
   $scope.password = '';
-  
+
   $scope.acceptButton = {
     loading: false
   };
@@ -13,6 +13,7 @@ App.controller('loginController', function($rootScope, $scope, $firebaseAuth) {
 
     $scope.acceptButton.loading = $scope.loginForm.$valid;
 
+    //TODO factory for login, it is repeat here and in singup
     $rootScope.auth.$authWithPassword({
       email: $scope.email, //'fulanito@gmail.com',
       password: $scope.password //'123456'

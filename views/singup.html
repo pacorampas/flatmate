@@ -1,22 +1,29 @@
-<h1>Singup</h1>
+<header class="fm-header">
+  <button class="fm-icon" ng-click="back()">
+    <i class="fa fa-arrow-left"></i>
+  </button>
+  <h4 class="fm-regular">Regístrate</h4>
+</header>
 
-<form name="singupForm">
-  <div>
-    <input type="text" ng-model="email" name="email" ng-required="true" ng-pattern="regexEmail">
-    <p class="error" ng-show="validate && singupForm.email.$error.required">Required!</p>
-    <p class="error" ng-show="validate && singupForm.email.$error.pattern">Should be a valid email!</p>
-  </div>
-  
-  <div>
-    <input type="password" ng-model="password" name="password" ng-required="true" ng-minlength="6">
-    <p class="error" ng-show="validate && singupForm.password.$error.minlength">Min length!</p>
-    <p class="error" ng-show="validate && singupForm.password.$error.required">Required!</p>
-  </div>
-  
-  <div>
-    <input type="password" ng-model="passwordRepeat" name="passwordRepeat" ng-required="true">
-    <p class="error" ng-show="validate && singupForm.password.$viewValue !== singupForm.passwordRepeat.$viewValue">Should be equal to password</p>
+<form novalidate class="fm-form" name="singupForm">
+  <div class="fm-form-row">
+    <input class="fm-input" type="text" ng-model="email" name="email" ng-required="true" email placeholder="example@domain.com">
+    <p class="fm-input-error" ng-show="singupForm.$submitted && singupForm.email.$error.required">Required!</p>
+    <p class="fm-input-error" ng-show="singupForm.$submitted && singupForm.email.$error.email">Should be a valid email!</p>
   </div>
 
-  <button ng-click="save()">ACCEPT</button>
+  <div class="fm-form-row">
+    <input class="fm-input" type="password" ng-model="password" name="password" ng-required="true" ng-minlength="6" placeholder="Contraseña">
+    <p class="fm-input-error" ng-show="singupForm.$submitted && singupForm.password.$error.minlength">Min length!</p>
+    <p class="fm-input-error" ng-show="singupForm.$submitted && singupForm.password.$error.required">Required!</p>
+  </div>
+
+  <div class="fm-form-row last-child">
+    <input class="fm-input" type="password" ng-model="passwordRepeat" name="passwordRepeat" ng-required="true" placeholder="Repite la contraseña">
+    <p class="fm-input-error" ng-show="singupForm.$submitted && singupForm.password.$viewValue !== singupForm.passwordRepeat.$viewValue">Should be equal to password</p>
+  </div>
+
+  <div class="fm-wrapper-push-bottom">
+    <button class="fm-button" fm-button loading="acceptButton.loading" ng-click="save()">ACCEPT</button>
+  </div>
 </form>

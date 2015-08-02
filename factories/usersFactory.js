@@ -1,6 +1,6 @@
 App.factory('usersFactory', function($firebaseArray, $firebaseObject, $window) {
   var ref = new Firebase("https://flatmate.firebaseio.com/users");
-  
+
   var online = navigator.onLine;
 
   $window.addEventListener('online', function() {

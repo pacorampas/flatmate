@@ -3,10 +3,12 @@
     <i class="fa fa-bars"></i>
   </button>
   <h4 class="fm-regular">Home</h4>
-  <button ng-click="auth.$unauth()">Logout</button>
+  <button class="fm-icon right" ng-click="auth.$unauth()">
+    <i class="fa fa-power-off"></i>
+  </button>
 </header>
 
-<section fm-tabs>
+<section fm-tabs ng-if="user.flat">
   <li fm-tab class="fm-tab" ng-click="changePaneTo(0)">Mis tareas</li>
   <li fm-tab class="fm-tab" ng-click="changePaneTo(1)">Tareas</li>
   <div fm-indicator class="fm-indicator"></div>
@@ -15,12 +17,24 @@
 <section class="fm-wrapper-panes" fm-panes selected="paneActive">
   <div fm-pane class="fm-pane">
     <ul class="fm-cards-wrapper">
-      <li class="fm-card" ng-repeat="task in user.flat.tasks track by $index" ng-if="task.who | itIsMe :user.flat.mates">
+      <li class="fm-card" ng-repeat="task in user.flat.tasks track by $index"
+          ng-if="task.who | itIsMe :user.flat.mates">
         <header>
           <i class="fm-card-icon-type fa fa-align-left"></i>
           <i class="fm-card-icon-settings fa fa-ellipsis-v"></i>
         </header>
         <p>{{task.title}}</p>
+      </li>
+      <li class="fm-empty-card-list" ng-if="!user.flat || !user.flat.tasks">
+        {{messageEmptyFlatOrTasks}}
+        <div ng-if="!user.flat">
+          <button class="fm-button" ng-click="newFlatButton()">
+            Crear piso
+          </button>
+        </div>
+      </li>
+      <li class="fm-empty-card-list" ng-if="user.flat.tasks && noTasksForMe">
+        No tienes tareas pendientes
       </li>
     </ul>
   </div>
@@ -39,11 +53,14 @@
           </span>
         </p>
       </li>
+      <li class="fm-empty-card-list" ng-if="!user.flat.tasks.length">
+        {{messageEmptyFlatOrTasks}}
+      </li>
     </ul>
   </div>
 </section>
 
-<div fm-main-button actions="mainActions">
+<div fm-main-button actions="mainActions" ng-if="user.flat">
   <button fm-main-button-action ng-click="simpleTask($event)">
     <label>Nueva tarea</label>
     <i class="fa fa-align-left"></i>

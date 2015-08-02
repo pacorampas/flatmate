@@ -1,38 +1,54 @@
-App.controller('singupController', function($scope, $firebaseAuth, $firebaseObject) {
+App.controller('singupController', function($scope, $firebaseAuth,
+                                            $firebaseObject, $rootScope,
+                                            $window) {
   var ref = new Firebase('https://flatmate.firebaseio.com');
   var Auth = $firebaseAuth(ref);
 
   $scope.email = '';
-  $scope.regexEmail = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/;
   $scope.password = '';
   $scope.passwordRepeat = '';
 
-  //TODO best way to validate until the user acctept/save the form
-  //see also login
-  $scope.validate = false;
+  $scope.acceptButton = {
+    loading: false
+  };
 
   $scope.save = function() {
-    $scope.validate = true;
-    if ($scope.singupForm.email.$valid && $scope.singupForm.password.$valid &&
-        $scope.password === $scope.passwordRepeat) {
+    //TODO chek into the limbo if the user was invitied in a flat
+    if ($scope.singupForm.$valid && $scope.password === $scope.passwordRepeat) {
       Auth.$createUser({
         email: $scope.email,
         password: $scope.password
       }).then(function(userData) {
-        alert("User created with uid: " + userData.uid);
-        
+        console.log("User created with uid: " + userData.uid);
+
         var userDB = $firebaseObject(ref.child('users').child(userData.uid));
         userDB.$value = {
           email: $scope.email,
         };
 
         userDB.$save().then(function() {
-          alert('User saved!');
+          console.log('User saved!');
+
+          //TODO factory for login, it is repeat here and in login
+          $rootScope.auth.$authWithPassword({
+            email: $scope.email,
+            password: $scope.password
+          }).then(function(authData) {
+            $scope.acceptButton.loading = false;
+          }).catch(function(error) {
+            $scope.acceptButton.loading = false;
+            //TODO show a error with invalid password + emial
+            alert('Bad credentials.');
+            console.log(error.code);
+            console.error("Authentication failed:", error);
+          });
         }).catch(function(error) {
           alert('Error!');
+          $scope.acceptButton.loading = false;
         });
 
       }).catch(function(error) {
+        $scope.acceptButton.loading = false;
         //TODO show a error if the email is taken
         if (error) {
           switch (error.code) {
@@ -53,5 +69,9 @@ App.controller('singupController', function($scope, $firebaseAuth, $firebaseObje
         }
       });
     }
+  }
+
+  $scope.back = function() {
+    $window.history.back();
   }
 });

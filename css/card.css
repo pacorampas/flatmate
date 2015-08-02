@@ -22,3 +22,10 @@
 .fm-card .fm-cad-who {
   color: #51a5a1;
 }
+.fm-empty-card-list {
+  text-align: center;
+  margin-top: 50px;
+}
+.fm-empty-card-list .fm-button {
+  margin-top: 10px;
+}

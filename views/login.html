@@ -1,9 +1,5 @@
 <header class="fm-header">
-  <button class="fm-icon">
-    <i class="fa fa-bars"></i>
-  </button>
-  <h4 class="fm-regular">Login2</h4>
-  <button ng-click="auth.$unauth()">Logout</button>
+  <h4 class="fm-regular">Login</h4>
 </header>
 
 <form novalidate class="fm-form" name="loginForm">
@@ -12,7 +8,7 @@
     <p class="fm-input-error" ng-show="loginForm.$submitted && loginForm.email.$error.required">Required!</p>
     <p class="fm-input-error" ng-show="loginForm.$submitted && loginForm.email.$error.email">Should be a valid email!</p>
   </div>
-  
+
   <div class="fm-form-row last-child">
     <input class="fm-input" type="password" ng-model="password" name="password" ng-required="true" ng-minlength="6" placeholder="password">
     <p class="fm-input-error" ng-show="loginForm.$submitted && loginForm.password.$error.minlength">Min length!</p>
@@ -20,6 +16,10 @@
   </div>
 
   <div class="fm-wrapper-push-bottom">
+    <p class="fm-register-text-login">
+      Si aún no tienes una cuenta creada ve a
+      <a href="#/singup">registro</a>
+    </p>
     <button class="fm-button" fm-button loading="acceptButton.loading" ng-click="login()">ACCEPT</button>
   </div>
 </form>
