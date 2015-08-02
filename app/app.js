@@ -1,4 +1,4 @@
-var App = angular.module('flatMate', ['firebase', 'ngRoute']);
+var App = angular.module('flatMate', ['firebase', 'ngRoute', 'ngAnimate']);
 
 window.onload = function() {
   angular.bootstrap(document.body, ['flatMate']);

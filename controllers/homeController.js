@@ -9,6 +9,17 @@ App.controller('homeController', function($scope, $rootScope) {
     $scope.mates = $rootScope.user.flat.mates;
   }
 
+
+  $scope.simpleTask = function(event) {
+    event.stopPropagation();
+    alert('simpleTask');
+  };
+  $scope.spinTask = function() {
+    event.stopPropagation();
+    alert('spin task');
+  };
+  
+
   $scope.changePaneTo = function(pane) {
     $scope.paneActive = pane;
   }
