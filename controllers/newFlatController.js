@@ -34,7 +34,6 @@ App.controller('newFlatController', function($rootScope, $scope, flatFactory,
       //After save we check if the invities are singup into the app
       //If the user is sing up we asing to the user the flat
       //else we save the email into a limbo for asigning the flat in the future
-      console.log(mates);
       for (var i = 0, l = mates.length; i < l; i++) {
         var mate = mates[i];
         asingFlatToUser(mate, idFlat);
@@ -52,19 +51,13 @@ App.controller('newFlatController', function($rootScope, $scope, flatFactory,
 
   function asingFlatToUser(mate, idFlat) {
     usersFactory.getUserByEmail(mate).then(function(user) {
-      console.log(mate);
-      console.log(user[0]);
-      console.log(user);
       if (user[0]) {
-        console.log('if');
         user[0].flats = user[0].flats ? user[0].flats : [];
-        console.log(user[0].flats);
         user[0].flats.push(idFlat);
         user.$save(user[0]).then(function() {
           console.log('save flat\'s user');
         });
       } else {
-        console.log('else');
         usersFactory.setUserIntoLimbo(mate, idFlat, function() {
           console.log('update flat\'s user');
         });

@@ -48,5 +48,5 @@ App.factory('flatFactory', function($firebaseArray, $window, $firebaseObject) {
       firebaseFlats.$remove(flat);
     }
   };
-  
+
 });

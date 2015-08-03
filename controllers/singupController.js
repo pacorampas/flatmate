@@ -29,7 +29,7 @@ App.controller('singupController', function($scope, $firebaseAuth,
           };
 
           if (userLimbo[0]) {
-            userDB.$value.flats = userLimbo[0].flats[0];
+            userDB.$value.flats = [userLimbo[0].flats[0]];
           }
 
           userDB.$save().then(function() {
