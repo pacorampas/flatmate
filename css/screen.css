@@ -1,0 +1,22 @@
+.fm-screen {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+}
+.fm-screen.ng-enter {
+  transform: translateX(-100%);
+  transition: transform 0.8s;
+}
+.fm-screen.ng-enter-active {
+  transform: translateX(0);
+}
+.fm-screen.ng-leave {
+  transform: translateX(0);
+  transition: transform 0.8s;
+}
+.fm-screen.ng-leave-active {
+  transform: translateX(100%);
+}

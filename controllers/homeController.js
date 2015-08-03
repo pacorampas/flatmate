@@ -21,7 +21,7 @@ App.controller('homeController', function($scope, $rootScope, $location) {
 
   $scope.simpleTask = function(event) {
     event.stopPropagation();
-    $location.path('/new-task')
+    $location.path('/new-task');
   };
 
   $scope.spinTask = function() {
