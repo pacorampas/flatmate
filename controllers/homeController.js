@@ -37,15 +37,6 @@ App.controller('homeController', function($scope, $rootScope, $location) {
     $location.path('new-flat')
   }
 
-  $scope.noTasksForMe = function noTasksForMe(me, mates) {
-    for(var i=0, l = mates.length; i < l; i++) {
-      if (mates[i] === me) {
-        return true;
-      }
-    }
-    return false;
-  }
-
   function messageEmptyFlatOrTasks(flat) {
     var userEmail = $rootScope.user.password.email;
 

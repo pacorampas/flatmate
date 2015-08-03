@@ -33,7 +33,9 @@
           </button>
         </div>
       </li>
-      <li class="fm-empty-card-list" ng-if="user.flat.tasks && noTasksForMe">
+      <li class="fm-empty-card-list"
+          ng-if="user.flat.tasks &&
+                 user.flat.tasks | noTasksForMe :user.flat.mates">
         No tienes tareas pendientes
       </li>
     </ul>
