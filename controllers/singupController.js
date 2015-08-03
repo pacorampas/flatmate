@@ -1,6 +1,6 @@
 App.controller('singupController', function($scope, $firebaseAuth,
                                             $firebaseObject, $rootScope,
-                                            $window) {
+                                            $location, usersFactory) {
   var ref = new Firebase('https://flatmate.firebaseio.com');
   var Auth = $firebaseAuth(ref);
 
@@ -13,38 +13,46 @@ App.controller('singupController', function($scope, $firebaseAuth,
   };
 
   $scope.save = function() {
-    //TODO chek into the limbo if the user was invitied in a flat
     if ($scope.singupForm.$valid && $scope.password === $scope.passwordRepeat) {
+      $scope.acceptButton.loading = true;
       Auth.$createUser({
         email: $scope.email,
         password: $scope.password
       }).then(function(userData) {
         console.log("User created with uid: " + userData.uid);
-
-        var userDB = $firebaseObject(ref.child('users').child(userData.uid));
-        userDB.$value = {
-          email: $scope.email,
-        };
-
-        userDB.$save().then(function() {
-          console.log('User saved!');
-
-          //TODO factory for login, it is repeat here and in login
-          $rootScope.auth.$authWithPassword({
+        usersFactory.getUserLimboByEmail($scope.email)
+            .then(function(userLimbo) {
+          //TODO put this into the users factory
+          var userDB = $firebaseObject(ref.child('users').child(userData.uid));
+          userDB.$value = {
             email: $scope.email,
-            password: $scope.password
-          }).then(function(authData) {
-            $scope.acceptButton.loading = false;
+          };
+
+          if (userLimbo[0]) {
+            userDB.$value.flats = userLimbo[0].flats[0];
+          }
+
+          userDB.$save().then(function() {
+            console.log('User saved!');
+
+            //TODO factory for login, it is repeat here and in login
+            $rootScope.auth.$authWithPassword({
+              email: $scope.email,
+              password: $scope.password
+            }).then(function(authData) {
+              userLimbo.$remove(userLimbo[0]);
+              $scope.acceptButton.loading = false;
+            }).catch(function(error) {
+              $scope.acceptButton.loading = false;
+              //TODO show a error with invalid password + email
+              alert('Bad credentials.');
+              console.log(error.code);
+              console.error("Authentication failed:", error);
+            });
           }).catch(function(error) {
+            alert('Error!');
             $scope.acceptButton.loading = false;
-            //TODO show a error with invalid password + emial
-            alert('Bad credentials.');
-            console.log(error.code);
-            console.error("Authentication failed:", error);
           });
-        }).catch(function(error) {
-          alert('Error!');
-          $scope.acceptButton.loading = false;
         });
 
       }).catch(function(error) {
@@ -53,7 +61,7 @@ App.controller('singupController', function($scope, $firebaseAuth,
         if (error) {
           switch (error.code) {
             case "INVALID_EMAIL":
-              console.log("The specified user account email is invalid.");
+              alert("Este email ya está en uso.");
               break;
             case "INVALID_PASSWORD":
               console.log("The specified user account password is incorrect.");
@@ -72,6 +80,6 @@ App.controller('singupController', function($scope, $firebaseAuth,
   }
 
   $scope.back = function() {
-    $window.history.back();
+    $location.path('login');
   }
 });

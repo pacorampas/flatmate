@@ -1,5 +1,5 @@
 App.controller('newFlatController', function($rootScope, $scope, flatFactory,
-                                              usersFactory, $location, $window) {
+                                              usersFactory, $location) {
   $scope.flat = flatFactory.getNewFlat();
 
   $scope.acceptButton = {
@@ -47,7 +47,7 @@ App.controller('newFlatController', function($rootScope, $scope, flatFactory,
   }
 
   $scope.back = function() {
-    $window.history.back();
+    $location.path('home');
   }
 
   function asingFlatToUser(mate, idFlat) {

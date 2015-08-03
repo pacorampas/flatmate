@@ -13,7 +13,8 @@ App.factory('usersFactory', function($firebaseArray, $firebaseObject, $window) {
 
   return {
     getUserByEmail: function(email) {
-      var refUserByEmail = ref.orderByChild('email').startAt(email).endAt(email);
+      var refUserByEmail = ref.orderByChild('email').startAt(email)
+          .endAt(email);
       var userByEmail = $firebaseArray(refUserByEmail);
       return userByEmail.$loaded();
     },
@@ -25,9 +26,7 @@ App.factory('usersFactory', function($firebaseArray, $firebaseObject, $window) {
     //Limbo is where we store a users invities into a flat but already they are
     //sing up into the app
     setUserIntoLimbo: function(email, flatId, callback) {
-      var limbo = ref.child('limbo').orderByChild('email').startAt(email).endAt(email);
-
-      $firebaseArray(limbo).$loaded().then(function(userIntoLimbo) {
+      this.getUserLimboByEmail(email).then(function(userIntoLimbo) {
         if (userIntoLimbo.length <= 0) {
           var userLimbo = {
             email: email,
@@ -43,6 +42,12 @@ App.factory('usersFactory', function($firebaseArray, $firebaseObject, $window) {
           });
         }
       });
+    },
+    getUserLimboByEmail: function(email) {
+      var limbo = ref.child('limbo').orderByChild('email').startAt(email)
+          .endAt(email);
+
+      return $firebaseArray(limbo).$loaded();
     }
   };
 });
