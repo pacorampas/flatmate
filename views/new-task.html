@@ -8,7 +8,7 @@
 <form novalidate class="fm-form" name="newTaskForm">
   <div class="fm-form-row">
     <input class="fm-input" type="text" ng-model="newTask.title" name="title" ng-required="true" placeholder="the task description...">
-    <p class="fm-input-error" ng-show="newTaskForm.$submitted && newTaskForm.title.$error.required">Required!</p>
+    <p class="fm-input-error" ng-show="newTaskForm.$submitted && newTaskForm.title.$error.required">Obligatorio</p>
   </div>
 
   <div class="fm-select fm-form-row" fm-select
@@ -18,6 +18,11 @@
   </div>
 
   <div class="fm-wrapper-push-bottom">
-    <button class="fm-button" fm-button loading="acceptButton.loading" ng-click="save()">ACCEPT</button>
+    <button class="fm-button" fm-button
+            loading="acceptButton.loading"
+            active="!acceptButton.loading"
+            ng-click="save()">
+      ACEPTAR
+    </button>
   </div>
 </form>

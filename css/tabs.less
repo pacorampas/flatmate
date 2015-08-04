@@ -23,6 +23,15 @@
     padding: 0 12px;
     color: inherit;
     cursor: pointer;
+    opacity: 0.5;
+
+    &[selected] {
+      opacity: 1;
+    }
+
+    &:not([selected]):hover, &:not([selected]):active {
+      opacity: 0.7;
+    }
   }
 }
 

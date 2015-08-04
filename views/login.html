@@ -5,14 +5,14 @@
 <form novalidate class="fm-form" name="loginForm">
   <div class="fm-form-row">
     <input class="fm-input" type="text" ng-model="email" name="email" ng-required="true" email placeholder="example@domain.com">
-    <p class="fm-input-error" ng-show="loginForm.$submitted && loginForm.email.$error.required">Required!</p>
-    <p class="fm-input-error" ng-show="loginForm.$submitted && loginForm.email.$error.email">Should be a valid email!</p>
+    <p class="fm-input-error" ng-show="loginForm.$submitted && loginForm.email.$error.required">Obligatorio</p>
+    <p class="fm-input-error" ng-show="loginForm.$submitted && loginForm.email.$error.email">Debe ser un email válido</p>
   </div>
 
   <div class="fm-form-row last-child">
     <input class="fm-input" type="password" ng-model="password" name="password" ng-required="true" ng-minlength="6" placeholder="password">
-    <p class="fm-input-error" ng-show="loginForm.$submitted && loginForm.password.$error.minlength">Min length!</p>
-    <p class="fm-input-error" ng-show="loginForm.$submitted && loginForm.password.$error.required">Required!</p>
+    <p class="fm-input-error" ng-show="loginForm.$submitted && loginForm.password.$error.minlength">Debe contener por lo menos 6 carácteres</p>
+    <p class="fm-input-error" ng-show="loginForm.$submitted && loginForm.password.$error.required">Obligatorio</p>
   </div>
 
   <div class="fm-wrapper-push-bottom">
@@ -20,6 +20,10 @@
       Si aún no tienes una cuenta creada ve a
       <a href="#/singup">registro</a>
     </p>
-    <button class="fm-button" fm-button loading="acceptButton.loading" ng-click="login()">ACCEPT</button>
+    <button class="fm-button" fm-button loading="acceptButton.loading"
+            active="!acceptButton.loading"
+            ng-click="login()">
+      ACEPTAR
+    </button>
   </div>
 </form>

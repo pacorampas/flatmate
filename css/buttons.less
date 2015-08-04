@@ -13,7 +13,7 @@
   color: #fff;
   background: @corporative;
 
-  &:active {
+  &:active, &:hover {
     opacity: 0.8;
   }
 
@@ -61,6 +61,10 @@
     z-index: 10;
   }
 
+  &:not(.active):active:before, &:not(.active):hover:before {
+    background: lighten(@corporative, 10%);
+  }
+
   .fm-icon-main-action {
     position: relative;
     z-index: 11;
@@ -92,6 +96,10 @@
       cursor: pointer;
       -webkit-transition: transform 0.15s;
       transition: transform 0.15s;
+
+      &:active, &:hover {
+        background: lighten(@gray, 20%);
+      }
 
       label {
         display: block;

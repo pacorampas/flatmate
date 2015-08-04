@@ -10,8 +10,7 @@ App.controller('loginController', function($rootScope, $scope, $firebaseAuth) {
     if (!$scope.loginForm.$valid) {
       return;
     }
-
-    $scope.acceptButton.loading = $scope.loginForm.$valid;
+    $scope.acceptButton.loading = true;
 
     //TODO factory for login, it is repeat here and in singup
     $rootScope.auth.$authWithPassword({
@@ -23,6 +22,7 @@ App.controller('loginController', function($rootScope, $scope, $firebaseAuth) {
       $scope.acceptButton.loading = false;
       //TODO show a error with invalid password + emial
       alert('Bad credentials.');
+      $scope.acceptButton.loading = false;
       console.log(error.code);
       console.error("Authentication failed:", error);
     });

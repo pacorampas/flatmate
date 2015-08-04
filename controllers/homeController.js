@@ -26,7 +26,7 @@ App.controller('homeController', function($scope, $rootScope, $location) {
 
   $scope.spinTask = function() {
     event.stopPropagation();
-    alert('spin task');
+    alert('La tarea rotatoria no está implementada.');
   };
 
   $scope.changePaneTo = function(pane) {

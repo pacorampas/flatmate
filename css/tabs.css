@@ -20,6 +20,14 @@
   padding: 0 12px;
   color: inherit;
   cursor: pointer;
+  opacity: 0.5;
+}
+.fm-tabs .fm-tab[selected] {
+  opacity: 1;
+}
+.fm-tabs .fm-tab:not([selected]):hover,
+.fm-tabs .fm-tab:not([selected]):active {
+  opacity: 0.7;
 }
 .fm-indicator {
   position: absolute;

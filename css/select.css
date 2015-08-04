@@ -1,4 +1,7 @@
 /* select */
+.fm-select {
+  cursor: pointer;
+}
 .fm-select > ul > li {
   display: inline-block;
 }

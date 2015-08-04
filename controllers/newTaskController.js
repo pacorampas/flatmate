@@ -25,7 +25,6 @@ App.controller('newTaskController', function($rootScope, $scope, $location) {
     $rootScope.user.flat.tasks.push($scope.newTask);
     $rootScope.user.flat.$save().then(function() {
       console.log('saved task');
-      $scope.acceptButton.loading = false;
       $location.path('home');
     })
   }
