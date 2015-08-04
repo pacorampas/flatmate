@@ -37,6 +37,13 @@ App.controller('homeController', function($scope, $rootScope, $location) {
     $location.path('new-flat')
   }
 
+  $scope.endTask = function(task, index) {
+    $rootScope.user.flat.tasks.splice(index, 1);
+    $rootScope.user.flat.$save().then(function(){
+      console.log('Task removed');
+    });
+  }
+
   function messageEmptyFlatOrTasks(flat) {
     var userEmail = $rootScope.user.password.email;
 

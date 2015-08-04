@@ -6,7 +6,7 @@
   background: #ffffff;
   margin-bottom: 12px;
   border-radius: 4px;
-  padding: 8px;
+  padding: 12px;
   box-shadow: 0px 1px 2px 0px rgba(50, 50, 50, 0.4);
 }
 .fm-card header {
@@ -19,8 +19,17 @@
   float: right;
   color: #9a999d;
 }
+.fm-card p {
+  margin-bottom: 8px;
+}
 .fm-card .fm-cad-who {
   color: #51a5a1;
+}
+.fm-card.clear:after {
+  content: "";
+  display: table;
+  width: 100%;
+  clear: both;
 }
 .fm-empty-card-list {
   text-align: center;

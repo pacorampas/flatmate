@@ -16,6 +16,7 @@ App.controller('newTaskController', function($rootScope, $scope, $location) {
   }
 
   $scope.save = function() {
+    //TODO save the tasks as a firebaseArray
     if (!$scope.newTaskForm.$valid) {
       return;
     }

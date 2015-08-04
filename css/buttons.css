@@ -125,6 +125,13 @@
 .main-action-trigger-close.ng-leave.ng-leave-active {
   opacity: 0;
 }
+.fm-button-soft {
+  background: transparent;
+  border: 0;
+  font-size: 14px;
+  font-weight: bold;
+  color: #5a5398;
+}
 /* icon */
 .fm-icon {
   height: 48px;

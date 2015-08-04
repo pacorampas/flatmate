@@ -10,7 +10,7 @@
   background: @white;
   margin-bottom: 12px;
   border-radius: 4px;
-  padding: 8px;
+  padding: 12px;
   box-shadow: @shadow;
 
   header {
@@ -24,8 +24,19 @@
     }
   }
 
+  p {
+    margin-bottom: 8px;
+  }
+
   .fm-cad-who {
     color: @corporative;
+  }
+
+  &.clear:after {
+    content: "";
+    display: table;
+    width: 100%;
+    clear: both;
   }
 }
 
