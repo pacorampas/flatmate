@@ -11,20 +11,26 @@
   overflow-y: scroll;
 
   &.ng-enter {
+    -webkit-transform: translateX(-100%);
     transform: translateX(-100%);
+    -webkit-transition: transform 0.8s;
     transition: transform 0.8s;
   }
 
   &.ng-enter-active {
+    -webkit-transform: translateX(0);
     transform: translateX(0);
   }
 
   &.ng-leave {
+    -webkit-transform: translateX(0);
     transform: translateX(0);
+    -webkit-transition: transform 0.8s;
     transition: transform 0.8s;
   }
 
   &.ng-leave-active {
+    -webkit-transform: translateX(100%);
     transform: translateX(100%);
   }
 

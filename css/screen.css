@@ -9,17 +9,23 @@
   overflow-y: scroll;
 }
 .fm-screen.ng-enter {
+  -webkit-transform: translateX(-100%);
   transform: translateX(-100%);
+  -webkit-transition: transform 0.8s;
   transition: transform 0.8s;
 }
 .fm-screen.ng-enter-active {
+  -webkit-transform: translateX(0);
   transform: translateX(0);
 }
 .fm-screen.ng-leave {
+  -webkit-transform: translateX(0);
   transform: translateX(0);
+  -webkit-transition: transform 0.8s;
   transition: transform 0.8s;
 }
 .fm-screen.ng-leave-active {
+  -webkit-transform: translateX(100%);
   transform: translateX(100%);
 }
 .fm-screen.sticky-active {

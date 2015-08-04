@@ -64,6 +64,7 @@
   .fm-icon-main-action {
     position: relative;
     z-index: 11;
+    -webkit-transition: transform 0.2s;
     transition: transform 0.2s;
   }
 
@@ -89,6 +90,7 @@
       font-size: 16px;
       color: @corporative;
       cursor: pointer;
+      -webkit-transition: transform 0.15s;
       transition: transform 0.15s;
 
       label {
@@ -103,6 +105,7 @@
         font-size: 14px;
         line-height: 24px;
         opacity: 0;
+        -webkit-transition: opacity 0.15s;
         transition: opacity 0.15s;
         .ellipsis();
       }

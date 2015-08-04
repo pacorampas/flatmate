@@ -27,9 +27,11 @@
   height: 1.5px;
   width: 0;
   background: #ffffff;
+  -webkit-transition: left 1s, width 1s;
   transition: left 1s, width 1s;
 }
 .fm-wrapper-panes {
+  -webkit-transition: transform 1s;
   transition: transform 1s;
 }
 .fm-panes {
