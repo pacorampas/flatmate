@@ -1,0 +1,56 @@
+.sticky-class {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
+}
+.fm-tabs {
+  position: relative;
+  width: 100%;
+  height: 48px;
+  background: #51a5a1;
+  color: #ffffff;
+  box-shadow: 0px 2px 3px 0px rgba(50, 50, 50, 0.4);
+}
+.fm-tabs .fm-tab {
+  float: left;
+  height: 100%;
+  line-height: 48px;
+  padding: 0 12px;
+  color: inherit;
+  cursor: pointer;
+}
+.fm-indicator {
+  position: absolute;
+  bottom: 0;
+  height: 1.5px;
+  width: 0;
+  background: #ffffff;
+  transition: left 1s, width 1s;
+}
+.fm-wrapper-panes {
+  transition: transform 1s;
+}
+.fm-panes {
+  width: 100%;
+  white-space: nowrap;
+  font-size: 0;
+}
+.fm-panes .fm-pane {
+  width: 100%;
+  display: inline-block;
+  vertical-align: top;
+  white-space: normal;
+  background: #faf9f3;
+  font-size: 16px;
+}
+.fm-register-text-login {
+  text-align: center;
+  margin-bottom: 15px;
+}
+.fm-register-text-login a {
+  text-decoration: none;
+  font-weight: bold;
+  color: #1a3331;
+}

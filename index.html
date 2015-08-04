@@ -3,12 +3,17 @@
 <head>
   <title>Flat mate</title>
   <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, user-scalable=no">
 
   <!-- css -->
-  <link rel="stylesheet" type="text/css" href="css/login.css">
+  <link rel="stylesheet" type="text/css" href="css/form.css">
   <link rel="stylesheet" type="text/css" href="css/card.css">
   <link rel="stylesheet" type="text/css" href="css/buttons.css">
   <link rel="stylesheet" type="text/css" href="css/screen.css">
+  <link rel="stylesheet" type="text/css" href="css/tabs.css">
+  <link rel="stylesheet" type="text/css" href="css/app.css">
+  <link rel="stylesheet" type="text/css" href="css/typography.css">
+  <link rel="stylesheet" type="text/css" href="css/select.css">
   <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
 
   <!-- libs -->
@@ -34,6 +39,7 @@
   <script type="text/javascript" src="directives/fm-tabs.js"></script>
   <script type="text/javascript" src="directives/fm-panes.js"></script>
   <script type="text/javascript" src="directives/fm-main-button.js"></script>
+  <script type="text/javascript" src="directives/fm-scroller.js"></script>
   <script type="text/javascript" src="directives/validationDirectives.js"></script>
   <script type="text/javascript" src="filters/filters.js"></script>
 
@@ -42,6 +48,6 @@
   <script type="text/javascript" src="node_modules/angularfire/dist/angularfire.min.js"></script>
 </head>
 <body>
-  <section class="fm-screen {{animateClass}}" ng-view></section>
+  <section class="fm-screen" ng-view fm-scroller></section>
 </body>
 </html>

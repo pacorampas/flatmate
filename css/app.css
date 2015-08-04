@@ -1,0 +1,25 @@
+[disabled] {
+  opacity: 0.5;
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  list-style: none;
+}
+input,
+button {
+  outline: none;
+  cursor: pointer;
+}
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0px 1000px white inset;
+}
+html,
+body {
+  width: 100%;
+  height: 100%;
+  background: #faf9f3;
+  font-family: sans-serif;
+  overflow-x: hidden;
+}

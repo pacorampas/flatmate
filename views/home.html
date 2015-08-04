@@ -8,7 +8,7 @@
   </button>
 </header>
 
-<section fm-tabs ng-if="user.flat">
+<section fm-tabs ng-if="user.flat" class="fm-tabs-wrapper" fm-sticky="sticky-class">
   <li fm-tab class="fm-tab" ng-click="changePaneTo(0)">Mis tareas</li>
   <li fm-tab class="fm-tab" ng-click="changePaneTo(1)">Tareas</li>
   <div fm-indicator class="fm-indicator"></div>
