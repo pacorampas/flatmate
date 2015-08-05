@@ -47,6 +47,15 @@ App.factory('cssSupporter', function() {
       }
       return false;
     },
+    forceRenderCSS: function(el, cb) {
+      //Its force to render the css
+      el.style.display='none';
+      el.offsetHeight;
+      el.style.display='';
+      setTimeout(function(){
+        cb();
+      }, 100)
+    },
     browser: browser,
     engine: engine
   };

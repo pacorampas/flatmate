@@ -7,7 +7,8 @@ App.directive('fmMainButton', function(cssSupporter) {
     controller: function($scope, $element, $compile, $transclude, $sce, cssSupporter) {
       var buttons = [];
       var _sumTranslationTop = 0;
-      var mainActionButton = angular.element($element[0].querySelector('.fm-main-action'));
+      var mainActionButton =
+          angular.element($element[0].querySelector('.fm-main-action'));
       $scope.modal = {show : false};
 
       this.addAction = function(element) {
@@ -22,21 +23,24 @@ App.directive('fmMainButton', function(cssSupporter) {
       }
 
       $scope.mainAction = function() {
-        if (mainActionButton.hasClass('active')) {
-          mainActionButton.removeClass('active');
-          $scope.modal.show = false;
-          for(index in buttons) {
-            var button = buttons[index];
-            moveButton(button.element, 0);
+        //It is use because webkit has an issue and not render the styles
+        cssSupporter.forceRenderCSS($element[0], function(){
+          if (mainActionButton.hasClass('active')) {
+            mainActionButton.removeClass('active');
+            for(index in buttons) {
+              var button = buttons[index];
+              moveButton(button.element, 0);
+            }
+          } else {
+            mainActionButton.addClass('active');
+
+            for(index in buttons) {
+              var button = buttons[index];
+              moveButton(button.element, button.translationTop);
+            }
           }
-        } else {
-          mainActionButton.addClass('active');
-          $scope.modal.show = true;
-          for(index in buttons) {
-            var button = buttons[index];
-            moveButton(button.element, button.translationTop);
-          }
-        }
+        });
+        $scope.modal.show = $scope.modal.show ? false : true;
       }
 
       function moveButton(button, yDisplacement) {
