@@ -54,7 +54,7 @@ App.factory('cssSupporter', function() {
       el.style.display='';
       setTimeout(function(){
         cb();
-      }, 100)
+      })
     },
     browser: browser,
     engine: engine
