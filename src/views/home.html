@@ -1,0 +1,82 @@
+<header class="fm-header corporative">
+  <button class="fm-icon">
+    <i class="fa fa-bars"></i>
+  </button>
+  <h4 class="fm-regular">{{user.flat.name}}</h4>
+  <button class="fm-icon right" ng-click="auth.$unauth()">
+    <i class="fa fa-power-off"></i>
+  </button>
+</header>
+
+<section fm-tabs ng-if="user.flat" class="fm-tabs-wrapper" fm-sticky="sticky-class">
+  <li fm-tab class="fm-tab" ng-click="changePaneTo(0)">Mis tareas</li>
+  <li fm-tab class="fm-tab" ng-click="changePaneTo(1)">Tareas</li>
+  <div fm-indicator class="fm-indicator"></div>
+</section>
+
+<section class="fm-wrapper-panes" fm-panes selected="paneActive">
+  <div fm-pane class="fm-pane">
+    <ul class="fm-cards-wrapper">
+      <li class="fm-card clear" ng-repeat="task in user.flat.tasks track by $index"
+          ng-if="task.who | itIsMe :user.flat.mates">
+        <header>
+          <i class="fm-card-icon-type fa fa-align-left"></i>
+          <i class="fm-card-icon-settings fa fa-ellipsis-v"></i>
+        </header>
+        <p>{{task.title}}</p>
+        <button class="fm-button-soft to-right"
+                ng-click="endTask(task, $index)">
+          Finalizar tarea
+        </button>
+      </li>
+      <li class="fm-empty-card-list" ng-if="!user.flat || !user.flat.tasks">
+        {{messageEmptyFlatOrTasks}}
+        <div ng-if="!user.flat">
+          <button class="fm-button" ng-click="newFlatButton()">
+            Crear piso
+          </button>
+        </div>
+      </li>
+      <li class="fm-empty-card-list"
+          ng-if="user.flat.tasks &&
+                 user.flat.tasks | noTasksForMe :user.flat.mates">
+        No tienes tareas pendientes
+      </li>
+    </ul>
+  </div>
+  <div fm-pane class="fm-pane">
+    <ul class="fm-cards-wrapper">
+      <li class="fm-card clear" ng-repeat="task in user.flat.tasks track by $index">
+        <header>
+          <i class="fm-card-icon-type fa fa-align-left"></i>
+          <i class="fm-card-icon-settings fa fa-ellipsis-v"></i>
+        </header>
+        <p>
+          {{task.title}}
+          <span class="fm-cad-who">
+            <i class="fa fa-long-arrow-right"></i>
+            {{task.who | whoIs :user.flat.mates}}
+          </span>
+        </p>
+        <button class="fm-button-soft to-right"
+                ng-click="endTask(task, $index)">
+          Finalizar tarea
+        </button>
+      </li>
+      <li class="fm-empty-card-list" ng-if="!user.flat.tasks.length">
+        {{messageEmptyFlatOrTasks}}
+      </li>
+    </ul>
+  </div>
+</section>
+
+<div fm-main-button actions="mainActions" ng-if="user.flat">
+  <button fm-main-button-action ng-click="simpleTask($event)">
+    <label>Nueva tarea</label>
+    <i class="fa fa-align-left"></i>
+  </button>
+  <button fm-main-button-action ng-click="spinTask($event)">
+    <label>Nueva tarea rotatoria</label>
+    <i class="fa fa-rotate-right"></i>
+  </button>
+</div>

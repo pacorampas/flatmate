@@ -1,0 +1,77 @@
+@import 'vars';
+
+.sticky-class {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
+}
+
+.fm-tabs {
+  position: relative;
+  width: 100%;
+  height: 48px;
+  background: @corporative;
+  color: @white;
+  box-shadow: @shadow2;
+
+  .fm-tab {
+    float: left;
+    height: 100%;
+    line-height: 48px;
+    padding: 0 12px;
+    color: inherit;
+    cursor: pointer;
+    opacity: 0.5;
+
+    &[selected] {
+      opacity: 1;
+    }
+
+    &:not([selected]):hover, &:not([selected]):active {
+      opacity: 0.7;
+    }
+  }
+}
+
+.fm-indicator {
+  position: absolute;
+  bottom: 0;
+  height: 1.5px;
+  width: 0;
+  background: @white;
+  -webkit-transition: left 1s, width 1s;
+  transition: left 1s, width 1s;
+}
+
+.fm-wrapper-panes {
+  -webkit-transition: transform 1s;
+  transition: transform 1s;
+}
+
+.fm-panes {
+  width: 100%;
+  white-space: nowrap;
+  font-size: 0;
+
+  .fm-pane {
+    width: 100%;
+    display: inline-block;
+    vertical-align: top;
+    white-space: normal;
+    background: @light;
+    font-size: 16px;
+  }
+}
+
+.fm-register-text-login {
+  text-align: center;
+  margin-bottom: 15px;
+
+  a {
+    text-decoration: none;
+    font-weight: bold;
+    color: @dark;
+  }
+}
