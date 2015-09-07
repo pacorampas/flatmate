@@ -23,7 +23,7 @@ module.exports = function(grunt) {
     less: {
       development: {
         options: {
-          paths: ['css'],
+          paths: ['less'],
           compress: false,
           ieCompat: true,
           rootpath: null,
@@ -40,12 +40,12 @@ module.exports = function(grunt) {
           ]
         },
         files: {
-          'dest/style.css': 'css/*.less'
+          'dest/style.css': 'less/*.less'
         }
       },
       production: {
         options: {
-          paths: ['css'],
+          paths: ['less'],
           compress: true,
           ieCompat: true,
           plugins: [
@@ -53,7 +53,7 @@ module.exports = function(grunt) {
           ]
         },
         files: {
-          'dest/style.css': 'css/*.less'
+          'dest/style.css': 'less/*.less'
         }
       }
     },
