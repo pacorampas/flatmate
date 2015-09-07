@@ -14,6 +14,9 @@
       register: function(user) {
         return $http.post(server+'/register', user);
       },
+      login: function(email, password) {
+        return $http.get(server+'/login?email='+email+'&password='+password);
+      },
       getAll: function(user) {
         return $http.get(server+'/apis/users/all');
       }
