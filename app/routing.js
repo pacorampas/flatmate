@@ -12,7 +12,12 @@ App.config(['$routeProvider', '$httpProvider',  function($routeProvider, $httpPr
     }).
     when('/home', {
       templateUrl: 'views/home.html',
-      controller: 'homeController'
+      controller: 'homeController',
+      resolve: {
+        isloggedIn: function($rootScope, userFactory) {
+          return userFactory.isLoggedIn($rootScope.session);
+        }
+      }
     }).
     when('/new-flat', {
       templateUrl: 'views/new-flat.html',

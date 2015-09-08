@@ -21,9 +21,10 @@ App.controller('singupController', function($scope, $firebaseAuth,
         email: $scope.email,
         password: $scope.password
       }).then(function(resp) {
-        var token = resp.data;
-        authFactory.setToken(token);
         $scope.acceptButton.loading = false;
+        $rootScope.session = resp.data.user;
+        authFactory.setToken(resp.data.token);
+        $location.path('home');
       }).catch(function(err) {
         console.log(err);
         $scope.acceptButton.loading = false;

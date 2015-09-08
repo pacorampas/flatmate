@@ -5,9 +5,15 @@
       .module('flatMate')
       .factory('userFactory', userFactory);
 
-  userFactory.$inject = ['$http', 'serverConfig'];
+  userFactory.$inject = [
+    '$http',
+    'serverConfig',
+    '$q',
+    'authFactory',
+    '$location'
+  ];
 
-  function userFactory($http, serverConfig) {
+  function userFactory($http, serverConfig, $q, authFactory, $location) {
     var server = serverConfig.server;
 
     return {
@@ -19,6 +25,16 @@
       },
       getAll: function(user) {
         return $http.get(server+'/apis/users/all');
+      },
+      isLoggedIn: function(user) {
+        return $q(function(resolve, reject) {
+          if (user) {
+            resolve(true);
+          } else {
+            $location.path('login');
+            reject(false);
+          }
+        });
       }
     }
   }

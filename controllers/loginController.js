@@ -17,7 +17,9 @@ App.controller('loginController', function($rootScope, $scope, $location,
     userFactory.login($scope.email, $scope.password).then(function(resp) {
       $scope.acceptButton.loading = false;
       authFactory.setToken(resp.data.token);
-      console.log(resp.data.token);
+      $rootScope.session = resp.data.user;
+      console.log(resp.data);
+      $location.path('home');
     }).catch(function(err) {
       alert('Bad credentials.');
       $scope.acceptButton.loading = false;

@@ -22,6 +22,7 @@ App.run(function($rootScope, $location, $firebaseAuth, usersFactory, flatFactory
     var ref = new Firebase("https://flatmate.firebaseio.com");
     $rootScope.auth = $firebaseAuth(ref);
 
+    /*
     $rootScope.$on('$locationChangeStart', function(event) {
       if (!onAuthReady) {
         return;
@@ -32,7 +33,8 @@ App.run(function($rootScope, $location, $firebaseAuth, usersFactory, flatFactory
         event.preventDefault();
       }
     });
-
+*/
+/*
     $rootScope.auth.$onAuth(function(authData) {
       onAuthReady = true;
       $rootScope.user = authData;
@@ -58,6 +60,7 @@ App.run(function($rootScope, $location, $firebaseAuth, usersFactory, flatFactory
         $location.path('login');
       }
     });
+    */
 
     function isAutenticated() {
       return $rootScope.user ? true : false;
