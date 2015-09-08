@@ -10,10 +10,11 @@
     'serverConfig',
     '$q',
     'authFactory',
-    '$location'
+    '$location',
+    '$rootScope'
   ];
 
-  function userFactory($http, serverConfig, $q, authFactory, $location) {
+  function userFactory($http, serverConfig, $q, authFactory, $location, $rootScope) {
     var server = serverConfig.server;
 
     return {
@@ -23,16 +24,52 @@
       login: function(email, password) {
         return $http.get(server+'/login?email='+email+'&password='+password);
       },
+      logout: function() {
+        $rootScope.session = null;
+        authFactory.setToken(null);
+      },
       getAll: function(user) {
         return $http.get(server+'/apis/users/all');
       },
-      isLoggedIn: function(user) {
+      //publicPath = boolean
+      //is is true is for public path that are not accesible if the user is
+      //logged in yet
+      //TODO: improve
+      isLoggedIn: function(publicPath) {
         return $q(function(resolve, reject) {
-          if (user) {
-            resolve(true);
+          if ($rootScope.session) {
+            if (publicPath) {
+              $location.path('home');
+              reject(false);
+            } else {
+              resolve(true);
+            }
           } else {
-            $location.path('login');
-            reject(false);
+            $http.get(server+'/apis/get-user-session').then(function(resp) {
+              if (resp.data.user) {
+                $rootScope.session = resp.data.user;
+                if (publicPath) {
+                  $location.path('home');
+                  reject(false);
+                } else {
+                  resolve(true);
+                }
+              } else {
+                if (publicPath) {
+                  resolve(true);
+                } else {
+                  $location.path('login');
+                  reject(false);
+                }
+              }
+            }).catch(function(err) {
+              if (publicPath) {
+                resolve(true);
+              } else {
+                $location.path('login');
+                reject(false);
+              }
+            });
           }
         });
       }

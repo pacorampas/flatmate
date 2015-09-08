@@ -4,18 +4,30 @@ App.config(['$routeProvider', '$httpProvider',  function($routeProvider, $httpPr
   $routeProvider.
     when('/login', {
       templateUrl: 'views/login.html',
-      controller: 'loginController'
+      controller: 'loginController',
+      //TODO: think to controlate the authentication state with
+      //$locationChangeStart event
+      resolve: {
+        isloggedIn: function($rootScope, userFactory) {
+          return userFactory.isLoggedIn(true);
+        }
+      }
     }).
     when('/singup', {
       templateUrl: 'views/singup.html',
-      controller: 'singupController'
+      controller: 'singupController',
+      resolve: {
+        isloggedIn: function($rootScope, userFactory) {
+          return userFactory.isLoggedIn(true);
+        }
+      }
     }).
     when('/home', {
       templateUrl: 'views/home.html',
       controller: 'homeController',
       resolve: {
         isloggedIn: function($rootScope, userFactory) {
-          return userFactory.isLoggedIn($rootScope.session);
+          return userFactory.isLoggedIn();
         }
       }
     }).

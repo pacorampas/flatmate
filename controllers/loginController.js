@@ -18,7 +18,6 @@ App.controller('loginController', function($rootScope, $scope, $location,
       $scope.acceptButton.loading = false;
       authFactory.setToken(resp.data.token);
       $rootScope.session = resp.data.user;
-      console.log(resp.data);
       $location.path('home');
     }).catch(function(err) {
       alert('Bad credentials.');

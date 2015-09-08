@@ -1,23 +1,14 @@
-App.controller('homeController', function($scope, $rootScope, $location) {
+App.controller('homeController', function($scope, $rootScope, $location,
+                                          userFactory) {
   $scope.paneActive = 0;
   $scope.messageEmptyFlatOrTasks = '';
 
-  messageEmptyFlatOrTasks($rootScope.user.flat);
+  messageEmptyFlatOrTasks($rootScope.session.flat);
 
-  if (!$rootScope.user.flat) {
-    $rootScope.$on('flatLoaded', function(event, mass) {
-      $scope.flat = $rootScope.user.flat;
-    })
-  } else {
-    $scope.mates = $rootScope.user.flat.mates;
+  $scope.logout = function() {
+    userFactory.logout();
+    $location.path('login');
   }
-
-  $rootScope.$watch('user.flat', function(newVal, oldVal) {
-    if (!$rootScope.user && !$rootScope.user.flat) {
-      return;
-    }
-    messageEmptyFlatOrTasks($rootScope.user.flat);
-  })
 
   $scope.simpleTask = function(event) {
     event.stopPropagation();
@@ -45,8 +36,6 @@ App.controller('homeController', function($scope, $rootScope, $location) {
   }
 
   function messageEmptyFlatOrTasks(flat) {
-    var userEmail = $rootScope.user.password.email;
-
     if (!flat) {
       $scope.messageEmptyFlatOrTasks = 'Aún no tienes creado ningún piso. Crealo e invita a tus compañeros.';
     } else if (!flat.tasks) {
