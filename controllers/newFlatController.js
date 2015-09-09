@@ -1,6 +1,10 @@
 App.controller('newFlatController', function($rootScope, $scope, flatFactory,
-                                              usersFactory, $location) {
-  $scope.flat = flatFactory.getNewFlat();
+                                              usersFactory, $location,
+                                              flatNewFactory) {
+  $scope.flat =  {
+    name: '',
+    mates: []
+  };
 
   $scope.acceptButton = {
     loading: false
@@ -10,38 +14,24 @@ App.controller('newFlatController', function($rootScope, $scope, flatFactory,
     if (!$scope.newFlatForm.$valid) {
       return;
     }
-
     $scope.acceptButton.loading = true;
-
-    $scope.flat.owner = $rootScope.user.password.email;
 
     //replace all spaces for nothing
     //and make an array
     var mates = $scope.flat.mates.replace(/ /g,'');
     mates = mates.split(',');
-    mates.push($rootScope.user.password.email);
     $scope.flat.mates = mates;
 
-    flatFactory.save($scope.flat).then(function(ref) {
+    flatNewFactory.add($scope.flat).then(function(resp) {
+      //TODO mirar en resp.data.mates que mates no se han creado porque
+      //no tienen usuario registrado
+      console.log(resp);
+      $rootScope.session.flat = resp.data;
+      $location.path('home');
       $scope.acceptButton.loading = false;
-      var idFlat = ref.key();
-      console.log("Added flat with id " + idFlat);
-      flatFactory.getFlatByKey(idFlat).then(function(flat) {
-        $rootScope.user.flat = flat;
-        $location.path('home');
-      })
-
-      //After save we check if the invities are singup into the app
-      //If the user is sing up we asing to the user the flat
-      //else we save the email into a limbo for asigning the flat in the future
-      for (var i = 0, l = mates.length; i < l; i++) {
-        var mate = mates[i];
-        asingFlatToUser(mate, idFlat);
-      }
-    }).catch(function(error) {
+    }).catch(function(err) {
+      console.log(err);
       $scope.acceptButton.loading = false;
-      console.error("Error:", error);
-      console.log(error.code);
     });
   }
 

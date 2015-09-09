@@ -33,7 +33,12 @@ App.config(['$routeProvider', '$httpProvider',  function($routeProvider, $httpPr
     }).
     when('/new-flat', {
       templateUrl: 'views/new-flat.html',
-      controller: 'newFlatController'
+      controller: 'newFlatController',
+      resolve: {
+        isloggedIn: function($rootScope, userFactory) {
+          return userFactory.isLoggedIn();
+        }
+      }
     }).
     when('/new-task', {
       templateUrl: 'views/new-task.html',

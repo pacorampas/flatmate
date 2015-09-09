@@ -11,8 +11,11 @@
     var server = serverConfig.server;
 
     return {
-      getAll: function(user) {
-        return $http.get(server+'/apis/users/all');
+      getAll: function() {
+        return $http.get(server+'/apis/flats/all');
+      },
+      add: function(flat) {
+        return $http.post(server+'/apis/flat', flat);
       }
     }
   }
