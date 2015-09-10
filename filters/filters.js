@@ -4,13 +4,23 @@ App.filter('itIsMe', function($rootScope, filtersFactory) {
   };
 });
 
-App.filter('whoIs', function($rootScope) {
+App.filter('whoIs', function($rootScope, filtersFactory) {
   return function(input, mates) {
     if (input == -1) {
       return 'Todos';
     }
-    var me = $rootScope.user.password.email;
-    return mates[input] === me ? 'Pringas' : mates[input];
+    var me = filtersFactory.itIsMe(input, mates);
+    if (me) {
+      return 'Pringas';
+    }
+    var mateEmail = null;
+    mates.forEach(function(mate) {
+      if (mate._id === input) {
+        mateEmail = mate.email;
+        return;
+      }
+    });
+    return mateEmail;
   };
 });
 

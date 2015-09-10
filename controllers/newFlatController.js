@@ -1,6 +1,6 @@
 App.controller('newFlatController', function($rootScope, $scope, flatFactory,
                                               usersFactory, $location,
-                                              flatNewFactory) {
+                                              flatNewFactory, userFactory) {
   $scope.flat =  {
     name: '',
     mates: []
@@ -27,6 +27,7 @@ App.controller('newFlatController', function($rootScope, $scope, flatFactory,
       //no tienen usuario registrado
       console.log(resp);
       $rootScope.session.flat = resp.data;
+       userFactory.addOwnerAsMate();
       $location.path('home');
       $scope.acceptButton.loading = false;
     }).catch(function(err) {
@@ -37,25 +38,5 @@ App.controller('newFlatController', function($rootScope, $scope, flatFactory,
 
   $scope.back = function() {
     $location.path('home');
-  }
-
-  function asingFlatToUser(mate, idFlat) {
-    usersFactory.getUserByEmail(mate).then(function(user) {
-      if (user[0]) {
-        user[0].flats = user[0].flats ? user[0].flats : [];
-        user[0].flats.push(idFlat);
-        user.$save(user[0]).then(function() {
-          console.log('save flat\'s user');
-        });
-      } else {
-        usersFactory.setUserIntoLimbo(mate, idFlat, function() {
-          console.log('update flat\'s user');
-        });
-      }
-    }).catch(function(error) {
-      $scope.acceptButton.loading = false;
-      console.error("Error:", error);
-      onsole.log(error.code);
-    });
   }
 });

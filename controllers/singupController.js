@@ -23,10 +23,10 @@ App.controller('singupController', function($scope, $firebaseAuth,
       }).then(function(resp) {
         //TODO, after register loged in the user
         //now it is happen but when you refresh the session is lost
-        $scope.acceptButton.loading = false;
-        $rootScope.session = resp.data.user;
-        authFactory.setToken(resp.data.token);
-        $location.path('home');
+        userFactory.login($scope.email, $scope.password).then(function(resp) {
+          $scope.acceptButton.loading = false;
+          $location.path('home');
+        });
       }).catch(function(err) {
         console.log(err);
         $scope.acceptButton.loading = false;
