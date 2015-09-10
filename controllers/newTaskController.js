@@ -1,19 +1,12 @@
-App.controller('newTaskController', function($rootScope, $scope, $location) {
+App.controller('newTaskController', function($rootScope, $scope, $location,
+                                             flatNewFactory) {
   $scope.newTask = {
     title: '',
-    who: -1,
+    who: null,
     spin: false
   }
 
   $scope.acceptButton = { loading: false };
-
-  if (!$rootScope.user.flat) {
-    $rootScope.$on('flatLoaded', function(event, mass) {
-      $scope.mates = $rootScope.user.flat.mates;
-    })
-  } else {
-    $scope.mates = $rootScope.user.flat.mates;
-  }
 
   $scope.save = function() {
     //TODO save the tasks as a firebaseArray
@@ -21,12 +14,12 @@ App.controller('newTaskController', function($rootScope, $scope, $location) {
       return;
     }
     $scope.acceptButton.loading = true;
-    $rootScope.user.flat.tasks = $rootScope.user.flat.tasks || [];
-    $rootScope.user.flat.tasks.push($scope.newTask);
-    $rootScope.user.flat.$save().then(function() {
-      console.log('saved task');
+    //TODO catch errors
+    flatNewFactory.addTask($rootScope.session.flat._id, $scope.newTask)
+                                                          .then(function(resp) {
+      $scope.acceptButton.loading = false;
       $location.path('home');
-    })
+    });
   }
 
   $scope.back = function() {

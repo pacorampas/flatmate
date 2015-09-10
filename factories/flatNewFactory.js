@@ -16,6 +16,9 @@
       },
       add: function(flat) {
         return $http.post(server+'/apis/flat', flat);
+      },
+      addTask: function(flatId, task) {
+        return $http.post(server+'/apis/flat/'+flatId+'/task', task);
       }
     }
   }

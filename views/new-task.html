@@ -7,13 +7,19 @@
 
 <form novalidate class="fm-form" name="newTaskForm">
   <div class="fm-form-row">
-    <input class="fm-input" type="text" ng-model="newTask.title" name="title" ng-required="true" placeholder="the task description...">
-    <p class="fm-input-error" ng-show="newTaskForm.$submitted && newTaskForm.title.$error.required">Obligatorio</p>
+    <input class="fm-input" type="text" ng-model="newTask.title" name="title"
+           ng-required="true" placeholder="the task description...">
+    <p class="fm-input-error"
+       ng-show="newTaskForm.$submitted && newTaskForm.title.$error.required">
+      Obligatorio
+    </p>
   </div>
 
   <div class="fm-select fm-form-row" fm-select
-      options="mates"
+      options="session.flat.mates"
       selected="newTask.who"
+      selected-key="'_id'"
+      selected-value-key="'email'"
       default-value="'Cualquiera'">
   </div>
 

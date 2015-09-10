@@ -1,10 +1,14 @@
+//TODO it don't work well without selectedKey and selectedKeyValue.
+//Make it easy. Show tempalte also.
 App.directive('fmSelect', function() {
   return {
     restrict: 'AE',
     scope: {
       options: '=',
       selected: '=',
-      defaultValue: '='
+      selectedKey: '=',
+      defaultValue: '=',
+      selectedValueKey: '='
     },
     templateUrl: 'directives/templates/fm-select.html',
     compile: function compile(tElement, tAttrs, transclude) {
@@ -12,9 +16,11 @@ App.directive('fmSelect', function() {
         pre: function preLink(scope, iElement, iAttrs, controller) {
           if (!scope.selected) {
             if (scope.defaultValue) {
-              scope.selected = -1;
+              scope.selected = null;
             } else {
-              scope.selected = 0;
+              scope.selected = scope.selectedKey ?
+                               scope.options[0][scope.selectedKey] :
+                               0;
             }
           }
 
@@ -31,12 +37,18 @@ App.directive('fmSelect', function() {
           })
 
           function setSelectedValue(index) {
-            if (index === -1) {
+            if (index === null) {
               scope.selectedValue = scope.defaultValue;
+              scope.selected = null;
             } else {
-              scope.selectedValue = scope.options[index];
+              scope.selectedValue = scope.selectedValueKey ?
+                                  scope.options[index][scope.selectedValueKey] :
+                                  scope.options[index];
+
+              scope.selected = scope.selectedKey ?
+                               scope.options[index][scope.selectedKey] :
+                               index;
             }
-            scope.selected = index;
           }
         },
         //the same of link

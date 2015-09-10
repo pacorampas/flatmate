@@ -42,7 +42,12 @@ App.config(['$routeProvider', '$httpProvider',  function($routeProvider, $httpPr
     }).
     when('/new-task', {
       templateUrl: 'views/new-task.html',
-      controller: 'newTaskController'
+      controller: 'newTaskController',
+      resolve: {
+        isloggedIn: function($rootScope, userFactory) {
+          return userFactory.isLoggedIn();
+        }
+      }
     }).
     otherwise({
       redirectTo: '/login'
