@@ -40,9 +40,8 @@
       add: function(flat) {
         return $q(function(resolve, reject) {
           $http.post(server+'/apis/flat', flat).then(function(resp) {
-            $rootScope.session.flat = resp.data;
-            userFactory.addOwnerAsMate();
-            //TODO, alert the user and/or send a invitation email
+            userFactory.updateSessionFlat(resp.data);
+            //TODO, alert the user and/or send an invitation email
             var matesNotSaved = matesNotRegistered(flat.mates, resp.data.mates);
             resolve(resp.data);
           }).catch(function(err) {
@@ -51,7 +50,15 @@
         });
       },
       addTask: function(flatId, task) {
-        return $http.post(server+'/apis/flat/'+flatId+'/task', task);
+        return $q(function(resolve, reject) {
+          $http.post(server+'/apis/flat/'+flatId+'/task', task)
+                                                          .then(function(resp) {
+            userFactory.updateSessionFlat(resp.data);
+            resolve(resp);
+          }).catch(function(err) {
+            reject(err);
+          });
+        });
       }
     }
   }
