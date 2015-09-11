@@ -26,8 +26,6 @@ App.controller('newFlatController', function($rootScope, $scope, flatFactory,
       //TODO mirar en resp.data.mates que mates no se han creado porque
       //no tienen usuario registrado
       console.log(resp);
-      $rootScope.session.flat = resp.data;
-       userFactory.addOwnerAsMate();
       $location.path('home');
       $scope.acceptButton.loading = false;
     }).catch(function(err) {
