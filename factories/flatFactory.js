@@ -1,52 +1,67 @@
-App.factory('flatFactory', function($firebaseArray, $window, $firebaseObject) {
-  var ref = new Firebase("https://flatmate.firebaseio.com/flats");
-  var firebaseFlats = $firebaseArray(ref);
+(function() {
+  'use strict';
 
-  firebaseFlats.$loaded()
-  .then(function(data) {
-    //TODO loaded
-  })
-  .catch(function(error) {
-    console.error("Error:", error);
-  });
+  angular
+      .module('flatMate')
+      .factory('flatFactory', flatFactory);
 
-  var online = navigator.onLine;
+  flatFactory.$inject = [
+    '$http',
+    'serverConfig',
+    '$q',
+    'userFactory',
+    '$rootScope'
+  ];
 
-  var flat = {
-    name: '',
-    owner: '',
-    mates: []
-  };
+  function flatFactory($http, serverConfig, $q, userFactory, $rootScope) {
+    var server = serverConfig.server;
 
-  $window.addEventListener('online', function() {
-    online = navigator.onLine;
-  });
-
-  $window.addEventListener('offline', function() {
-    online = navigator.onLine;
-  });
-
-  return {
-    getNewFlat: function() {
-      return angular.copy(flat);
-    },
-    getAll: function() {
-      return firebaseFlats;
-    },
-    getFlatByKey: function(key) {
-      var refFlatByKey = ref.child(key);
-      var flatByKey = $firebaseObject(refFlatByKey);
-      return flatByKey.$loaded();
-    },
-    save: function(flat) {
-      if (!online) {
-        return;
+    function matesNotRegistered(matesEmailsSended, matesSaved) {
+      var matesNotRegistered = new Array();
+      for(var i = 0, l = matesEmailsSended.length; i < l; i++) {
+        var found = false;
+        for(var j = 0, len = matesSaved.length; j < len; j++) {
+          if (matesEmailsSended[i] === matesSaved[j].email) {
+            found = true;
+            continue;
+          }
+        }
+        if (!found) {
+          matesNotRegistered.push(matesEmailsSended[i]);
+        }
       }
-      return firebaseFlats.$add(flat);
-    },
-    remove: function(flat) {
-      firebaseFlats.$remove(flat);
+      return matesNotRegistered;
     }
-  };
 
-});
+    return {
+      getAll: function() {
+        return $http.get(server+'/apis/flats/all');
+      },
+      add: function(flat) {
+        return $q(function(resolve, reject) {
+          $http.post(server+'/apis/flat', flat).then(function(resp) {
+            userFactory.updateSessionFlat(resp.data);
+            //TODO, alert the user and/or send an invitation email
+            resp.matesNotRegistered =
+                matesNotRegistered(flat.mates, resp.data.mates);
+            resolve(resp);
+          }).catch(function(err) {
+            reject(err);
+          });
+        });
+      },
+      addTask: function(flatId, task) {
+        return $q(function(resolve, reject) {
+          $http.post(server+'/apis/flat/'+flatId+'/task', task)
+                                                          .then(function(resp) {
+            userFactory.updateSessionFlat(resp.data);
+            resolve(resp);
+          }).catch(function(err) {
+            reject(err);
+          });
+        });
+      }
+    }
+  }
+
+})();

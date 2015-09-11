@@ -1,6 +1,4 @@
-App.controller('loginController', function($rootScope, $scope, $location,
-                                           $firebaseAuth, userFactory,
-                                           authFactory) {
+App.controller('loginController', function($scope, $location, userFactory) {
   $scope.email = '';
   $scope.password = '';
 

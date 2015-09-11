@@ -1,6 +1,4 @@
-App.controller('newFlatController', function($rootScope, $scope, flatFactory,
-                                              usersFactory, $location,
-                                              flatNewFactory, userFactory) {
+App.controller('newFlatController', function($scope, $location, flatFactory) {
   $scope.flat =  {
     name: '',
     mates: []
@@ -22,9 +20,8 @@ App.controller('newFlatController', function($rootScope, $scope, flatFactory,
     mates = mates.split(',');
     $scope.flat.mates = mates;
 
-    flatNewFactory.add($scope.flat).then(function(resp) {
-      //TODO mirar en resp.data.mates que mates no se han creado porque
-      //no tienen usuario registrado
+    flatFactory.add($scope.flat).then(function(resp) {
+      //TODO ver que hacer con los resp.matesNotRegistered
       console.log(resp);
       $location.path('home');
       $scope.acceptButton.loading = false;

@@ -1,10 +1,4 @@
-App.controller('singupController', function($scope, $firebaseAuth,
-                                            $firebaseObject, $rootScope,
-                                            $location, userFactory,
-                                            authFactory) {
-  var ref = new Firebase('https://flatmate.firebaseio.com');
-  var Auth = $firebaseAuth(ref);
-
+App.controller('singupController', function($scope, $location, userFactory) {
   $scope.email = '';
   $scope.password = '';
   $scope.passwordRepeat = '';

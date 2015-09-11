@@ -1,5 +1,5 @@
 App.controller('newTaskController', function($rootScope, $scope, $location,
-                                             flatNewFactory) {
+                                             flatFactory) {
   $scope.newTask = {
     title: '',
     who: null,
@@ -15,7 +15,7 @@ App.controller('newTaskController', function($rootScope, $scope, $location,
     }
     $scope.acceptButton.loading = true;
     //TODO catch errors
-    flatNewFactory.addTask($rootScope.session.flat._id, $scope.newTask)
+    flatFactory.addTask($rootScope.session.flat._id, $scope.newTask)
                                                           .then(function(resp) {
       $scope.acceptButton.loading = false;
       $location.path('home');
