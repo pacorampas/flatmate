@@ -2,8 +2,8 @@
   'use strict';
 
   angular
-      .module('flatMate')
-      .factory('flatFactory', flatFactory);
+    .module('flatMate')
+    .factory('flatFactory', flatFactory);
 
   flatFactory.$inject = [
     '$http',

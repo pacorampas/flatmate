@@ -1,19 +1,19 @@
 (function() {
-    'use strict';
+  'use strict';
 
-    angular
-        .module('flatMate')
-        .factory('authFactory', authFactory);
+  angular
+    .module('flatMate')
+    .factory('authFactory', authFactory);
 
-    function authFactory() {
-      return {
-        setToken: function(token) {
-          localStorage.authToken = token;
-        },
-        getToken: function() {
-          return localStorage.authToken;
-        }
+  function authFactory() {
+    return {
+      setToken: function(token) {
+        localStorage.authToken = token;
+      },
+      getToken: function() {
+        return localStorage.authToken;
       }
     }
+  }
 
 })();

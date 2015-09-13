@@ -2,15 +2,14 @@
   'use strict';
 
   angular
-      .module('flatMate')
-      .factory('httpRequestInterceptor', httpRequestInterceptor);
+    .module('flatMate')
+    .factory('httpRequestInterceptor', httpRequestInterceptor);
 
   httpRequestInterceptor.$inject = ['authFactory'];
 
   function httpRequestInterceptor(authFactory) {
-
     return {
-       request: function(config) {
+      request: function(config) {
         var token = authFactory.getToken();
 
         //only set authorization if the url is an apis (api secure)
@@ -24,7 +23,7 @@
 
         return config;
        }
-    };
+     };
   }
 
 })();

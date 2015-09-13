@@ -1,37 +1,52 @@
-App.controller('newFlatController', function($scope, $location, flatFactory) {
-  $scope.flat =  {
-    name: '',
-    mates: []
-  };
+(function() {
+  'use strict';
 
-  $scope.acceptButton = {
-    loading: false
-  };
+  angular
+    .module('flatMate')
+    .controller('newFlatController', newFlatController);
 
-  $scope.createFlat = function() {
-    if (!$scope.newFlatForm.$valid) {
-      return;
+  newFlatController.$inject = [
+    '$scope',
+    '$location',
+    'flatFactory'
+  ];
+
+  function newFlatController($scope, $location, flatFactory) {
+    $scope.flat =  {
+      name: '',
+      mates: []
+    };
+
+    $scope.acceptButton = {
+      loading: false
+    };
+
+    $scope.createFlat = function() {
+      if (!$scope.newFlatForm.$valid) {
+        return;
+      }
+      $scope.acceptButton.loading = true;
+
+      //replace all spaces for nothing
+      //and make an array
+      var mates = $scope.flat.mates.replace(/ /g,'');
+      mates = mates.split(',');
+      $scope.flat.mates = mates;
+
+      flatFactory.add($scope.flat).then(function(resp) {
+        //TODO ver que hacer con los resp.matesNotRegistered
+        console.log(resp);
+        $location.path('home');
+        $scope.acceptButton.loading = false;
+      }).catch(function(err) {
+        console.log(err);
+        $scope.acceptButton.loading = false;
+      });
     }
-    $scope.acceptButton.loading = true;
 
-    //replace all spaces for nothing
-    //and make an array
-    var mates = $scope.flat.mates.replace(/ /g,'');
-    mates = mates.split(',');
-    $scope.flat.mates = mates;
-
-    flatFactory.add($scope.flat).then(function(resp) {
-      //TODO ver que hacer con los resp.matesNotRegistered
-      console.log(resp);
+    $scope.back = function() {
       $location.path('home');
-      $scope.acceptButton.loading = false;
-    }).catch(function(err) {
-      console.log(err);
-      $scope.acceptButton.loading = false;
-    });
-  }
+    }
+  };
 
-  $scope.back = function() {
-    $location.path('home');
-  }
-});
+})();

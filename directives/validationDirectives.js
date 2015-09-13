@@ -1,45 +1,60 @@
-var EMAIL_REGEXP = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/;
-App.directive('email', function() {
-  return {
-    require: 'ngModel',
-    link: function(scope, elm, attrs, ctrl) {
-      ctrl.$validators.email = function(modelValue, viewValue) {
-        if (ctrl.$isEmpty(modelValue)) {
-          // consider empty models to be valid
-          return true;
-        }
+(function() {
+  'use strict';
 
-        if (EMAIL_REGEXP.test(viewValue)) {
-          // it is valid
-          return true;
-        }
+  angular
+      .module('flatMate')
+      .directive('email', email);
 
-        // it is invalid
-        return false;
-      };
-    }
+  function email() {
+    var EMAIL_REGEXP = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/;
+
+    return {
+      require: 'ngModel',
+      link: function(scope, elm, attrs, ctrl) {
+        ctrl.$validators.email = function(modelValue, viewValue) {
+          if (ctrl.$isEmpty(modelValue)) {
+            // consider empty models to be valid
+            return true;
+          }
+
+          if (EMAIL_REGEXP.test(viewValue)) {
+            // it is valid
+            return true;
+          }
+
+          // it is invalid
+          return false;
+        };
+      }
+    };
   };
-});
 
-var GROUP_EMAIL_REGEXP = /^([\w+-.%]+@[\w-.]+\.[A-Za-z]{2,4},?\s*?)+$/;
-App.directive('groupemail', function() {
-  return {
-    require: 'ngModel',
-    link: function(scope, elm, attrs, ctrl) {
-      ctrl.$validators.groupemail = function(modelValue, viewValue) {
-        if (ctrl.$isEmpty(modelValue)) {
-          // consider empty models to be valid
-          return true;
-        }
+  angular
+      .module('flatMate')
+      .directive('groupemail', groupemail);
 
-        if (GROUP_EMAIL_REGEXP.test(viewValue)) {
-          // it is valid
-          return true;
-        }
+  function groupemail() {
+    var GROUP_EMAIL_REGEXP = /^([\w+-.%]+@[\w-.]+\.[A-Za-z]{2,4},?\s*?)+$/;
 
-        // it is invalid
-        return false;
-      };
-    }
+    return {
+      require: 'ngModel',
+      link: function(scope, elm, attrs, ctrl) {
+        ctrl.$validators.groupemail = function(modelValue, viewValue) {
+          if (ctrl.$isEmpty(modelValue)) {
+            // consider empty models to be valid
+            return true;
+          }
+
+          if (GROUP_EMAIL_REGEXP.test(viewValue)) {
+            // it is valid
+            return true;
+          }
+
+          // it is invalid
+          return false;
+        };
+      }
+    };
   };
-});
+
+})();

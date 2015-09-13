@@ -1,10 +1,15 @@
-var App = angular.module('flatMate',
-  [
-    'ngRoute',
-    'ngAnimate'
-  ]
-);
+(function() {
+  'use strict';
 
-window.onload = function() {
-  angular.bootstrap(document.body, ['flatMate']);
-}
+  angular.module('flatMate',
+    [
+      'ngRoute',
+      'ngAnimate'
+    ]
+  );
+
+  window.onload = function() {
+    angular.bootstrap(document.body, ['flatMate']);
+  }
+
+})();
