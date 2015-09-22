@@ -62,6 +62,15 @@
           }
         }
       }).
+      when('/new-spin-task', {
+        templateUrl: 'views/new-spin-task.html',
+        controller: 'newSpinTaskController',
+        resolve: {
+          isloggedIn: function($rootScope, userFactory) {
+            return userFactory.isLoggedIn();
+          }
+        }
+      }).
       otherwise({
         redirectTo: '/login'
       });

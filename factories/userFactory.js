@@ -70,6 +70,8 @@
             $http.get(server+'/apis/get-user-session').then(function(resp) {
               if (resp.data.user) {
                 $rootScope.session = resp.data.user;
+                updateSessionFlat(resp.data.user.flat);
+
                 if (publicPath) {
                   $location.path('home');
                   reject(false);

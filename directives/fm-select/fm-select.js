@@ -13,6 +13,7 @@
       scope: {
         options: '=',
         selected: '=',
+        selectedValue: '=',
         selectedKey: '=',
         defaultValue: '=',
         selectedValueKey: '='

@@ -3,15 +3,32 @@
 
   angular
     .module('flatMate')
-    .filter('itIsMe', itIsMe);
+    .filter('isMyTask', isMyTask);
 
-  itIsMe.$inject = [
+  isMyTask.$inject = [
     'filtersFactory'
   ];
 
-  function itIsMe(filtersFactory) {
-    return function(input, mates) {
-      return filtersFactory.itIsMe(input, mates);
+  function isMyTask(filtersFactory) {
+    return function(task) {
+      if (task.spin) {
+        return filtersFactory.spinTaskTaskForMe(task.history);
+      }
+      return filtersFactory.itIsMe(task.who);
+    };
+  };
+
+  angular
+    .module('flatMate')
+    .filter('spinTaskTaskForMe', spinTaskTaskForMe);
+
+  spinTaskTaskForMe.$inject = [
+    'filtersFactory'
+  ];
+
+  function spinTaskTaskForMe(filtersFactory) {
+    return function(history) {
+      return filtersFactory.spinTaskTaskForMe(history);
     };
   };
 
@@ -28,7 +45,7 @@
       if (input == -1) {
         return 'Todos';
       }
-      var me = filtersFactory.itIsMe(input, mates);
+      var me = filtersFactory.itIsMe(input);
       if (me) {
         return 'Pringas';
       }
@@ -52,12 +69,12 @@
   ];
 
   function noTasksForMe(filtersFactory) {
-    return function(tasks, mates){
+    return function(tasks){
       if (!tasks || typeof tasks === "undefined") {
         return true;
       }
       for(var i=0, l = tasks.length; i < l; i++) {
-        if (filtersFactory.itIsMe(tasks[i].who, mates)) {
+        if (filtersFactory.itIsMe(tasks[i].who)) {
           return false;
         }
       }

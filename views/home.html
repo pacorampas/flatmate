@@ -13,22 +13,36 @@
   <li fm-tab class="fm-tab" ng-click="changePaneTo(1)">Tareas</li>
   <div fm-indicator class="fm-indicator"></div>
 </section>
-
+<!-- TODO make a directive to show the task card -->
 <section class="fm-wrapper-panes" fm-panes selected="paneActive">
   <div fm-pane class="fm-pane">
     <ul class="fm-cards-wrapper">
       <li class="fm-card clear" ng-repeat="task in session.flat.tasks track by $index"
-          ng-if="task.who | itIsMe :session.flat.mates">
-        <header>
-          <i class="fm-card-icon-type fa fa-align-left"></i>
-          <i class="fm-card-icon-settings fa fa-ellipsis-v"></i>
-        </header>
-        <p>{{task.title}}</p>
-        <button class="fm-button-soft to-right"
-                ng-click="endTask(task, $index)">
-          Finalizar tarea
-        </button>
+          ng-if="task | isMyTask :session.flat.mates">
+        <div ng-if="!task.spin">
+          <header>
+            <i class="fm-card-icon-type fa fa-align-left"></i>
+            <i class="fm-card-icon-settings fa fa-ellipsis-v"></i>
+          </header>
+          <p>{{task.title}}</p>
+          <button class="fm-button-soft to-right"
+                  ng-click="endTask(task, $index)">
+            Finalizar tarea
+          </button>
+        </div>
+        <div ng-if="task.spin">
+          <header>
+            <i class="fm-card-icon-type fa fa-align-left"></i>
+            <i class="fm-card-icon-settings fa fa-ellipsis-v"></i>
+          </header>
+          <p>{{task.title}}: {{task.history | spinTaskTaskForMe}}</p>
+          <button class="fm-button-soft to-right"
+                  ng-click="endTask(task, $index)">
+            Finalizar tarea
+          </button>
+        </div>
       </li>
+
       <li class="fm-empty-card-list" ng-if="!session.flat || !session.flat.tasks">
         {{messageEmptyFlatOrTasks}}
         <div ng-if="!session.flat">
@@ -47,21 +61,45 @@
   <div fm-pane class="fm-pane">
     <ul class="fm-cards-wrapper">
       <li class="fm-card clear" ng-repeat="task in session.flat.tasks track by $index">
-        <header>
-          <i class="fm-card-icon-type fa fa-align-left"></i>
-          <i class="fm-card-icon-settings fa fa-ellipsis-v"></i>
-        </header>
-        <p>
-          {{task.title}}
-          <span class="fm-cad-who">
-            <i class="fa fa-long-arrow-right"></i>
-            {{task.who | whoIs :session.flat.mates}}
-          </span>
-        </p>
-        <button class="fm-button-soft to-right"
-                ng-click="endTask(task, $index)">
-          Finalizar tarea
-        </button>
+        <div ng-if="!task.spin">
+          <header>
+            <i class="fm-card-icon-type fa fa-align-left"></i>
+            <i class="fm-card-icon-settings fa fa-ellipsis-v"></i>
+          </header>
+          <p>
+            {{task.title}}
+            <span class="fm-cad-who">
+              <i class="fa fa-long-arrow-right"></i>
+              {{task.who | whoIs :session.flat.mates}}
+            </span>
+          </p>
+          <button class="fm-button-soft to-right"
+                  ng-click="endTask(task, $index)">
+            Finalizar tarea
+          </button>
+        </div>
+        <div ng-if="task.spin">
+          <header>
+            <i class="fm-card-icon-type fa fa-align-left"></i>
+            <i class="fm-card-icon-settings fa fa-ellipsis-v"></i>
+          </header>
+          <p>
+            {{task.title}}
+            <ul>
+              <li ng-repeat="subtask in task.history[task.history.length - 1].subtasks">
+                - {{subtask.subtask.value}}
+                <span class="fm-cad-who">
+                  <i class="fa fa-long-arrow-right"></i>
+                  {{subtask.who | whoIs :session.flat.mates}}
+                </span>
+              </li>
+            </ul>
+          </p>
+          <button class="fm-button-soft to-right"
+                  ng-click="endTask(task, $index)">
+            Finalizar tarea
+          </button>
+        </div>
       </li>
       <li class="fm-empty-card-list" ng-if="!session.flat.tasks.length">
         {{messageEmptyFlatOrTasks}}

@@ -22,7 +22,6 @@
     $scope.acceptButton = { loading: false };
 
     $scope.save = function() {
-      //TODO save the tasks as a firebaseArray
       if (!$scope.newTaskForm.$valid) {
         return;
       }

@@ -29,7 +29,7 @@
 
     $scope.spinTask = function() {
       event.stopPropagation();
-      alert('La tarea rotatoria no está implementada.');
+      $location.path('/new-spin-task');
     };
 
     $scope.changePaneTo = function(pane) {
