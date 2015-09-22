@@ -31,10 +31,15 @@
 
   <ul>
     <h4>Subtareas</h4>
-    <li
-        ng-repeat="subtask in newTask.subtasks track by $index">
-        <div fm-spin-subtask value="subtask.value"></div>
+    <!-- TODO improve the fm-spin-subtask directiva and the error if there isn't
+    any subtask -->
+    <li ng-repeat="subtask in newTask.subtasks track by $index">
+      <div fm-spin-subtask class="fm-spin-subtask" value="subtask.value"></div>
     </li>
+    <p class="fm-input-error"
+     ng-show="newTaskForm.$submitted && !newTask.subtasks.length">
+      Almenos debe haber una subtask
+    </p>
   </ul>
   <button ng-click="addNewSubtask($event)">Añadir nueva subtarea</button>
 </form>

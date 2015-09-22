@@ -18,7 +18,9 @@
       spin: true,
       period: null,
       subtasks: [
-        { value: 'hi' }
+        {
+          value: ''
+        }
       ]
     }
 
@@ -32,7 +34,7 @@
     $scope.acceptButton = { loading: false };
 
     $scope.save = function() {
-      if (!$scope.newTaskForm.$valid) {
+      if (!$scope.newTaskForm.$valid || !validateSubtasks()) {
         return;
       }
       $scope.acceptButton.loading = true;
@@ -54,6 +56,15 @@
 
     $scope.back = function() {
       $location.path('home');
+    }
+
+    function validateSubtasks() {
+      for(var l = $scope.newTask.subtasks.length, i = l-1; i >= 0; i--) {
+        if (!$scope.newTask.subtasks[i].value) {
+          $scope.newTask.subtasks.splice(i, 1);
+        }
+      }
+      return ($scope.newTask.subtasks.length > 0);
     }
   };
 
