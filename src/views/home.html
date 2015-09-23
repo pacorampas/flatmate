@@ -35,7 +35,7 @@
             <i class="fm-card-icon-type fa fa-align-left"></i>
             <i class="fm-card-icon-settings fa fa-ellipsis-v"></i>
           </header>
-          <p>{{task.title}}: {{task.history | spinTaskTaskForMe}}</p>
+          <p>{{task.title}}: {{task.history | spinTaskForMe}}</p>
           <button class="fm-button-soft to-right"
                   ng-click="endTask(task, $index)">
             Finalizar tarea
@@ -43,17 +43,18 @@
         </div>
       </li>
 
-      <li class="fm-empty-card-list" ng-if="!session.flat || !session.flat.tasks">
-        {{messageEmptyFlatOrTasks}}
+      <li class="fm-empty-card-list" ng-if="messageEmptyFlatOrTasks()">
+        {{messageEmptyFlatOrTasks()}}
         <div ng-if="!session.flat">
           <button class="fm-button" ng-click="newFlatButton()">
             Crear piso
           </button>
         </div>
       </li>
+
       <li class="fm-empty-card-list"
-          ng-if="session.flat.tasks &&
-                 session.flat.tasks | noTasksForMe :session.flat.mates">
+          ng-if="session.flat.tasks && !messageEmptyFlatOrTasks() &&
+                 (session.flat.tasks | noTasksForMe :session.flat.mates)">
         No tienes tareas pendientes
       </li>
     </ul>
@@ -102,7 +103,7 @@
         </div>
       </li>
       <li class="fm-empty-card-list" ng-if="!session.flat.tasks.length">
-        {{messageEmptyFlatOrTasks}}
+        {{messageEmptyFlatOrTasks()}}
       </li>
     </ul>
   </div>

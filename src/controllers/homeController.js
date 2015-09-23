@@ -14,9 +14,6 @@
 
   function homeController($scope, $rootScope, $location, userFactory) {
     $scope.paneActive = 0;
-    $scope.messageEmptyFlatOrTasks = '';
-
-    messageEmptyFlatOrTasks($rootScope.session.flat);
 
     $scope.logout = function() {
       userFactory.logout();
@@ -48,12 +45,14 @@
       });
     }
 
-    function messageEmptyFlatOrTasks(flat) {
+    $scope.messageEmptyFlatOrTasks = function() {
+      var flat = $rootScope.session.flat;
       if (!flat) {
-        $scope.messageEmptyFlatOrTasks = 'Aún no tienes creado ningún piso. Crealo e invita a tus compañeros.';
-      } else if (!flat.tasks) {
-        $scope.messageEmptyFlatOrTasks = 'No hay ninguna tarea registrada, comienza a crearlas y asignárselas a tus compañeros.';
+        return 'Aún no tienes creado ningún piso. Crealo e invita a tus compañeros.';
+      } else if (!flat.tasks.length) {
+        return 'No hay ninguna tarea registrada, comienza a crearlas y asignárselas a tus compañeros.';
       }
+      return false;
     }
   };
 

@@ -18,7 +18,7 @@
         var me = $rootScope.session._id;
         return userId === me;
       },
-      spinTaskTaskForMe: function(history) {
+      spinTaskForMe: function(history) {
         var subtasks = history[history.length - 1].subtasks;
         for(var i = 0, l = subtasks.length; i < l; i++) {
           if(this.itIsMe(subtasks[i].who)) {
