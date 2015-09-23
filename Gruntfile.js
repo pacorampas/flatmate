@@ -75,7 +75,7 @@ module.exports = function(grunt) {
           ]
         },
         files: {
-          'dest/css/style.css': ['*.less', '*/*.less', '*/*/*.less', '*/*/*.less']
+          'dest/css/style.css': ['*.less', '*/*.less', '*/*/*.less', '*/*/*/*.less']
         }
       },
       production: {
