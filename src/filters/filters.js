@@ -74,7 +74,7 @@
         return true;
       }
       for(var i = 0, l = tasks.length; i < l; i++) {
-        if (tasks[i].spin && !filtersFactory.spinTaskForMe(tasks[i].history)) {
+        if (tasks[i].spin && filtersFactory.spinTaskForMe(tasks[i].history)) {
           return false;
         } else if (filtersFactory.itIsMe(tasks[i].who)) {
           return false;
