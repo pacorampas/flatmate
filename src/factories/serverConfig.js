@@ -7,12 +7,11 @@
 
   function serverConfig() {
     var config = {
-      //host: 'localhost',
-      //port: ':3000',
-      host: 'flatmateapp.herokuapp.com',
-      port: '',
-      protocol: 'http://'
+      host: '@@host',
+      port: '@@port',
+      protocol: '@@protocol'
     }
+
     return {
       host: config.host,
       port: config.port,
