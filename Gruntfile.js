@@ -110,8 +110,15 @@ module.exports = function(grunt) {
     clean: ['dest'],
     watch: {
       scripts: {
-        files: ['*','*/*', '*/*/*'],
+        files: ['*','*/*', '*/*/*', '*/*/*/*'],
         tasks: ['build'],
+        options: {
+          spawn: false,
+        }
+      },
+      local: {
+        files: ['*','*/*', '*/*/*', '*/*/*/*'],
+        tasks: ['build-local'],
         options: {
           spawn: false,
         }
@@ -200,6 +207,18 @@ module.exports = function(grunt) {
       'htmlmin',
       'less:development',
       'bgShell'
+    ]
+  );
+
+  grunt.registerTask('build-local',
+    [
+      'clean',
+      'uglify:min',
+      'replace:local',
+      'htmlmin',
+      'less:development',
+      'bgShell',
+      'watch:local'
     ]
   );
 

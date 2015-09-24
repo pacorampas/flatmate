@@ -7,8 +7,9 @@
 
 <form novalidate class="fm-form" name="newTaskForm">
   <div class="fm-form-row">
+    <label>Descripción:</label>
     <input class="fm-input" type="text" ng-model="newTask.title" name="title"
-           ng-required="true" placeholder="the task description...">
+           ng-required="true" placeholder="la descripción de la tarea...">
     <p class="fm-input-error"
        ng-show="newTaskForm.$submitted && newTaskForm.title.$error.required">
       Obligatorio
@@ -20,7 +21,8 @@
       selected="newTask.who"
       selected-key="'_id'"
       selected-value-key="'email'"
-      default-value="'Cualquiera'">
+      default-value="'Cualquiera'"
+      label="'Quien debe realizarla:'">
   </div>
 
   <div class="fm-wrapper-push-bottom">

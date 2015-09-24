@@ -16,7 +16,8 @@
         selectedValue: '=',
         selectedKey: '=',
         defaultValue: '=',
-        selectedValueKey: '='
+        selectedValueKey: '=',
+        label: '='
       },
       templateUrl: 'directives/fm-select/fm-select.html',
       compile: function compile(tElement, tAttrs, transclude) {

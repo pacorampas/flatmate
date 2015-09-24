@@ -7,8 +7,9 @@
 
 <form novalidate class="fm-form" name="newTaskForm">
   <div class="fm-form-row">
+    <label>Descripción:</label>
     <input class="fm-input" type="text" ng-model="newTask.title" name="title"
-           ng-required="true" placeholder="the task description...">
+           ng-required="true" placeholder="escribe la descripción de la tarea...">
     <p class="fm-input-error"
        ng-show="newTaskForm.$submitted && newTaskForm.title.$error.required">
       Obligatorio
@@ -17,7 +18,8 @@
 
   <div class="fm-select fm-form-row" fm-select
        options="periodOptions"
-       selected="newTask.period">
+       selected="newTask.period"
+       label="'Periodo de repetición:'">
   </div>
 
   <div class="fm-wrapper-push-bottom">
@@ -29,17 +31,19 @@
     </button>
   </div>
 
-  <ul>
-    <h4>Subtareas</h4>
+  <ul class="fm-form-row">
+    <label class="underline">Subtareas</label>
     <!-- TODO improve the fm-spin-subtask directiva and the error if there isn't
     any subtask -->
-    <li ng-repeat="subtask in newTask.subtasks track by $index">
-      <div fm-spin-subtask class="fm-spin-subtask" value="subtask.value"></div>
+    <li class="fm-spin-subtask" ng-repeat="subtask in newTask.subtasks track by $index">
+      <div fm-spin-subtask value="subtask.value"></div>
     </li>
     <p class="fm-input-error"
      ng-show="newTaskForm.$submitted && !newTask.subtasks.length">
       Almenos debe haber una subtask
     </p>
   </ul>
-  <button ng-click="addNewSubtask($event)">Añadir nueva subtarea</button>
+  <button class="fm-button-add-subtask" ng-click="addNewSubtask($event)">
+    Añadir nueva subtarea
+  </button>
 </form>

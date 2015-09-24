@@ -7,11 +7,17 @@
 
 <form novalidate class="fm-form" name="newFlatForm">
   <div class="fm-form-row">
-    <input class="fm-input" type="text" ng-model="flat.name" name="name" ng-required="true" placeholder="my nice flat...">
-    <p class="fm-input-error" ng-show="newFlatForm.$submitted && newFlatForm.name.$error.required">Obligatorio</p>
+    <label>Nombre del piso:</label>
+    <input class="fm-input" type="text" ng-model="flat.name" name="name"
+        ng-required="true" placeholder="my nice flat...">
+    <p class="fm-input-error" ng-show="newFlatForm.$submitted &&
+                                       newFlatForm.name.$error.required">
+      Obligatorio
+    </p>
   </div>
 
   <div class="fm-form-row last-child">
+    <label>Tus compañeros:</label>
     <input class="fm-input" type="text" ng-model="flat.mates" name="mates" ng-required="true" groupemail placeholder="compi@domain.com, compi2@domain.com">
     <p class="fm-input-error" ng-show="newFlatForm.$submitted && newFlatForm.mates.$error.groupemail">Algún email es incorrecto</p>
     <p class="fm-input-error" ng-show="newFlatForm.$submitted && newFlatForm.mates.$error.required">Obligatorio</p>
