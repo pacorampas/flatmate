@@ -71,6 +71,17 @@
             reject(err);
           });
         });
+      },
+      markTaskAsDone: function(flat, task) {
+        return $q(function(resolve, reject) {
+          $http.post(server+'/apis/flat/'+flat._id+'/task/'+task._id)
+                                                          .then(function(resp) {
+            userFactory.updateSessionFlat(resp.data.flat);
+            resolve(resp.data);
+          }).catch(function(err) {
+            reject(err);
+          });
+        });
       }
     }
   }
