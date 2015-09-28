@@ -18,9 +18,15 @@
 
   <div class="fm-form-row last-child">
     <label>Tus compañeros:</label>
-    <input class="fm-input" type="text" ng-model="flat.mates" name="mates" ng-required="true" groupemail placeholder="compi@domain.com, compi2@domain.com">
+    <input class="fm-input" type="text" ng-model="flat.mates" name="mates" ng-required="true" placeholder="compi@domain.com, compi2@domain.com" ng-change="searchMate()">
     <p class="fm-input-error" ng-show="newFlatForm.$submitted && newFlatForm.mates.$error.groupemail">Algún email es incorrecto</p>
     <p class="fm-input-error" ng-show="newFlatForm.$submitted && newFlatForm.mates.$error.required">Obligatorio</p>
+    <ul>
+      <li ng-repeat="mate in matesRecomendation track by $index"
+          ng-click="selectThisMate($index)">
+        {{mate.email}}
+      </li>
+    </ul>
   </div>
 
   <div class="fm-wrapper-push-bottom">

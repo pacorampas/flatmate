@@ -52,6 +52,9 @@
       getAll: function(user) {
         return $http.get(server+'/apis/users/all');
       },
+      userExist: function(email, notIn) {
+        return $http.get(server+'/apis/user-exist?email='+email+'&notIn='+JSON.stringify(notIn));
+      },
       updateSessionFlat: updateSessionFlat,
       //publicPath = boolean
       //is is true is for public path that are not accesible if the user is
