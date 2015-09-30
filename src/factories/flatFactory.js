@@ -50,6 +50,19 @@
           });
         });
       },
+      update: function(flat) {
+        return $q(function(resolve, reject) {
+          $http.put(server+'/apis/flat', flat).then(function(resp) {
+            userFactory.updateSessionFlat(resp.data);
+            //TODO, alert the user and/or send an invitation email
+            resp.matesNotRegistered =
+                matesNotRegistered(flat.mates, resp.data.mates);
+            resolve(resp);
+          }).catch(function(err) {
+            reject(err);
+          });
+        });
+      },
       addTask: function(flatId, task) {
         return $q(function(resolve, reject) {
           $http.post(server+'/apis/flat/'+flatId+'/task', task)

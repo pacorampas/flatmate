@@ -3,19 +3,21 @@
 
   angular
     .module('flatMate')
-    .controller('newFlatController', newFlatController);
+    .controller('editFlatController', editFlatController);
 
-  newFlatController.$inject = [
+  editFlatController.$inject = [
     '$scope',
     '$rootScope',
     '$location',
-    'flatFactory'
+    'flatFactory',
+    'userFactory'
   ];
 
-  function newFlatController($scope, $rootScope, $location, flatFactory) {
+  function editFlatController($scope, $rootScope, $location, flatFactory,
+                              userFactory) {
     activate();
 
-    $scope.createFlat = function() {
+    $scope.updateFlat = function() {
       if (!$scope.newFlatForm.$valid) {
         return;
       }
@@ -31,7 +33,7 @@
         flat.mates.pop();
       }
 
-      flatFactory.add(flat).then(function(resp) {
+      flatFactory.update(flat).then(function(resp) {
         //TODO ver que hacer con los resp.matesNotRegistered
         console.log(resp);
         $location.path('home');
@@ -43,9 +45,24 @@
     }
 
     function activate() {
-      if ($rootScope.session.flat) {
-        $location.path('edit-flat');
+      if (!$rootScope.session.flat) {
+        $location.path('new-flat');
       }
+
+      var sessionMates = userFactory.getOnlyFlatMates();
+      console.log(sessionMates);
+      console.log($rootScope.session.flat);
+      var mates = '';
+      for(var i=0, l = sessionMates.length; i < l; i++) {
+        mates += sessionMates[i].email
+        if (l-1 > i) {
+          mates += ', ';
+        }
+      }
+
+      $scope.flat.name = $rootScope.session.flat.name;
+      $scope.flat.mates = mates;
+      $scope.flat._id = $rootScope.session.flat._id;
     }
   };
 

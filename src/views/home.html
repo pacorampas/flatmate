@@ -2,7 +2,12 @@
   <button class="fm-icon">
     <i class="fa fa-bars"></i>
   </button>
-  <h4 class="fm-regular">{{session.flat.name}}</h4>
+  <h4 class="fm-regular">
+    {{session.flat.name}}
+    <a href="#/edit-flat" ng-if="session._id === session.flat.owner._id">
+      Editar
+    </a>
+  </h4>
   <button class="fm-icon right" ng-click="logout()">
     <i class="fa fa-power-off"></i>
   </button>

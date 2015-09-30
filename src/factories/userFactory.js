@@ -56,6 +56,12 @@
         return $http.get(server+'/apis/user-exist?email='+email+'&notIn='+JSON.stringify(notIn));
       },
       updateSessionFlat: updateSessionFlat,
+      getOnlyFlatMates: function() {
+        //get only mates without the owner as mate
+        var onlyMates = $rootScope.session.flat.mates.slice(0);
+        onlyMates.pop();
+        return onlyMates;
+      },
       //publicPath = boolean
       //is is true is for public path that are not accesible if the user is
       //logged in yet
