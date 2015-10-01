@@ -235,24 +235,42 @@ body {
 }
 .fm-form-row {
   position: relative;
-  box-shadow: 0px 1px 2px 0px rgba(50, 50, 50, 0.4);
+  margin-bottom: 8px;
 }
-.fm-form-row:first-child .fm-input,
-.fm-form-row.first-child .fm-input {
+.fm-form-row > label {
+  display: inline-block;
+  margin-bottom: 3px;
+  padding: 0 10px;
+  font-size: 10px;
+}
+.fm-form-row > label.underline {
+  border-bottom: 1px solid #1a3331;
+  display: inline-block;
+  width: 100%;
+  padding-bottom: 3px;
+}
+.fm-form.collapse > .fm-form-row {
+  margin-bottom: 0;
+}
+.fm-form.collapse > .fm-form-row .fm-input {
+  border-radius: 0;
+}
+.fm-form.collapse > .fm-form-row:first-child .fm-input,
+.fm-form.collapse > .fm-form-row.first-child .fm-input {
   border-top-left-radius: 4px;
   border-top-right-radius: 4px;
   position: relative;
 }
-.fm-form-row:last-child .fm-input,
-.fm-form-row.last-child .fm-input {
+.fm-form.collapse > .fm-form-row:last-child .fm-input,
+.fm-form.collapse > .fm-form-row.last-child .fm-input {
   border-bottom-left-radius: 4px;
   border-bottom-right-radius: 4px;
 }
-.fm-form-row:last-child::before,
-.fm-form-row.last-child::before {
+.fm-form.collapse > .fm-form-row:last-child::before,
+.fm-form.collapse > .fm-form-row.last-child::before {
   display: none;
 }
-.fm-form-row::before {
+.fm-form.collapse > .fm-form-row::before {
   content: "";
   position: absolute;
   right: 0;
@@ -266,12 +284,14 @@ body {
   display: inline-block;
   width: 100%;
   height: 42px;
-  padding: 8px 16px;
+  padding: 8px 10px;
   border: 0;
+  border-radius: 4px;
   line-height: 34px;
   font-size: 14px;
   color: #1a3331;
   background: #fff;
+  box-shadow: 0px 1px 2px 0px rgba(50, 50, 50, 0.4);
 }
 .fm-select .fm-input {
   background: #eee;
@@ -343,6 +363,9 @@ body {
 }
 .fm-select > ul > li {
   display: inline-block;
+}
+.fm-select .fm-input {
+  border-radius: 0;
 }
 .fm-drop-down {
   display: none;
@@ -446,11 +469,19 @@ p {
 /*# sourceMappingURL=dest/css/style.css.map */
 
 /*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJ0by5jc3MifQ== */
-.fm-spin-subtask > input {
+.fm-spin-subtask input {
   display: block;
   width: 100%;
   border: 0;
   background: transparent;
   font-size: 14px;
+  padding: 4px 0;
+}
+.fm-button-add-subtask {
+  font-size: 14px;
+  background: transparent;
+  border: 0;
+  font-weight: 600;
+  color: #51a5a1;
 }
 /*# sourceMappingURL=dest/css/style.css.map */
