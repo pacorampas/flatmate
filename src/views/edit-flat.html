@@ -5,7 +5,7 @@
   <h4 class="fm-regular">Nuevo piso</h4>
 </header>
 
-<form novalidate class="fm-form" name="newFlatForm" ng-controller="newFlatController">
+<form novalidate class="fm-form" name="newFlatForm" ng-controller="editFlatController">
   <div class="fm-form-row">
     <label>Nombre del piso:</label>
     <input class="fm-input" type="text" ng-model="flat.name" name="name"
@@ -33,7 +33,7 @@
     <button class="fm-button" fm-button
             loading="acceptButton.loading"
             active="!acceptButton.loading"
-            ng-click="createFlat()">
+            ng-click="updateFlat()">
       ACEPTAR
     </button>
   </div>

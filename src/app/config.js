@@ -46,7 +46,16 @@
       }).
       when('/new-flat', {
         templateUrl: 'views/new-flat.html',
-        controller: 'newFlatController',
+        controller: 'flatController',
+        resolve: {
+          isloggedIn: function($rootScope, userFactory) {
+            return userFactory.isLoggedIn();
+          }
+        }
+      }).
+      when('/edit-flat', {
+        templateUrl: 'views/edit-flat.html',
+        controller: 'flatController',
         resolve: {
           isloggedIn: function($rootScope, userFactory) {
             return userFactory.isLoggedIn();

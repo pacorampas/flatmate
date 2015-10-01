@@ -6,40 +6,62 @@
 
 .fm-form-row {
   position: relative;
-  box-shadow: 0px 1px 2px 0px rgba(50, 50, 50, 0.4);
+  margin-bottom: 8px;
 
-  &:first-child,
-  &.first-child {
+  & > label {
+    display: inline-block;
+    margin-bottom: 3px;
+    padding: 0 10px;
+    font-size: 10px;
 
-    .fm-input {
-      border-top-left-radius: 4px;
-      border-top-right-radius: 4px;
-      position: relative;
+    &.underline {
+      border-bottom: 1px solid @dark;
+      display: inline-block;
+      width: 100%;
+      padding-bottom: 3px;
     }
   }
 
-  &:last-child,
-  &.last-child {
+  .fm-form.collapse > & {
+    margin-bottom: 0;
 
     .fm-input {
-      border-bottom-left-radius: 4px;
-      border-bottom-right-radius: 4px;
+      border-radius: 0;
+    }
+
+    &:first-child,
+    &.first-child {
+
+      .fm-input {
+        border-top-left-radius: 4px;
+        border-top-right-radius: 4px;
+        position: relative;
+      }
+    }
+
+    &:last-child,
+    &.last-child {
+
+      .fm-input {
+        border-bottom-left-radius: 4px;
+        border-bottom-right-radius: 4px;
+      }
+
+      &::before {
+        display: none;
+      }
     }
 
     &::before {
-      display: none;
+      content: "";
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      height: 1.1px;
+      background: #ecedef;
+      z-index: 1;
     }
-  }
-
-  &::before {
-    content: "";
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    height: 1.1px;
-    background: #ecedef;
-    z-index: 1;
   }
 }
 
@@ -47,12 +69,14 @@
   display: inline-block;
   width: 100%;
   height: 42px;
-  padding: 8px 16px;
+  padding: 8px 10px;
   border: 0;
+  border-radius: 4px;
   line-height: 34px;
   font-size: 14px;
   color: #1a3331;
   background: #fff;
+  box-shadow: 0px 1px 2px 0px rgba(50, 50, 50, 0.4);
 
   .fm-select & {
     background: #eee;

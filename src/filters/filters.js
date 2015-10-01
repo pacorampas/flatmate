@@ -28,7 +28,7 @@
 
   function spinTaskForMe(filtersFactory) {
     return function(history) {
-      return filtersFactory.spinTaskForMe(history);
+      return filtersFactory.spinTaskForMe(history).subtask.value;
     };
   };
 
@@ -82,7 +82,46 @@
       }
       return true;
     }
+  };
 
+  angular
+    .module('flatMate')
+    .filter('taskIsDone', taskIsDone);
+
+  taskIsDone.$inject = [
+    'filtersFactory'
+  ];
+
+  function taskIsDone(filtersFactory) {
+    return function(task) {
+      if (!task.spin) {
+        return task.done;
+      } else {
+        var subtaskForMe = filtersFactory.spinTaskForMe(task.history);
+        return subtaskForMe.done;
+      }
+    };
+  };
+
+  angular
+    .module('flatMate')
+    .filter('spinTaskAllDone', spinTaskAllDone);
+
+  function spinTaskAllDone() {
+    return function(spinTask) {
+      if (!spinTask.spin) {
+        return false;
+      }
+
+      var subtasks = spinTask.history[spinTask.history.length - 1].subtasks;
+      for(var i = 0, l = subtasks.length; i < l; i++) {
+        if (!subtasks[i].done) {
+          return true;
+        }
+      }
+
+      return false;
+    };
   };
 
 })();

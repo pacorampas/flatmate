@@ -9,10 +9,12 @@
     '$scope',
     '$rootScope',
     '$location',
-    'userFactory'
+    'userFactory',
+    'flatFactory'
   ];
 
-  function homeController($scope, $rootScope, $location, userFactory) {
+  function homeController($scope, $rootScope, $location, userFactory,
+                                                                  flatFactory) {
     $scope.paneActive = 0;
 
     $scope.logout = function() {
@@ -43,6 +45,10 @@
       $rootScope.user.flat.$save().then(function(){
         console.log('Task removed');
       });
+    }
+
+    $scope.markTaskAsDone = function(task) {
+      flatFactory.markTaskAsDone($rootScope.session.flat, task);
     }
 
     $scope.messageEmptyFlatOrTasks = function() {
