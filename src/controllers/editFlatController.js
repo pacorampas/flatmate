@@ -35,7 +35,6 @@
 
       flatFactory.update(flat).then(function(resp) {
         //TODO ver que hacer con los resp.matesNotRegistered
-        console.log(resp);
         $location.path('home');
         $scope.acceptButton.loading = false;
       }).catch(function(err) {
@@ -50,8 +49,6 @@
       }
 
       var sessionMates = userFactory.getOnlyFlatMates();
-      console.log(sessionMates);
-      console.log($rootScope.session.flat);
       var mates = '';
       for(var i=0, l = sessionMates.length; i < l; i++) {
         mates += sessionMates[i].email

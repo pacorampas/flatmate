@@ -1,23 +1,30 @@
-<header class="fm-header corporative">
-  <button class="fm-icon">
-    <i class="fa fa-bars"></i>
-  </button>
-  <h4 class="fm-regular">
-    {{session.flat.name}}
-    <a href="#/edit-flat" ng-if="session._id === session.flat.owner._id">
-      Editar
-    </a>
-  </h4>
-  <button class="fm-icon right" ng-click="logout()">
-    <i class="fa fa-power-off"></i>
-  </button>
-</header>
+<div fm-sticky="sticky-class">
+  <header class="fm-header corporative">
+    <h4 class="fm-regular">
+      {{session.flat.name}}
+    </h4>
+    <button class="fm-icon right" ng-click="logout()" style="display: none">
+      <i class="fa fa-power-off"></i>
+    </button>
+    <ul fm-drop-down>
+      <li ng-if="session._id === session.flat.owner._id">
+        <a href="#/edit-flat">
+          EDITAR PISO
+        </a>
+      </li>
+      <li>
+        <button ng-click="logout()">POWER OFF</button>
+      </li>
+    </ul>
+  </header>
 
-<section fm-tabs ng-if="session.flat" class="fm-tabs-wrapper" fm-sticky="sticky-class">
-  <li fm-tab class="fm-tab" ng-click="changePaneTo(0)">Mis tareas</li>
-  <li fm-tab class="fm-tab" ng-click="changePaneTo(1)">Tareas</li>
-  <div fm-indicator class="fm-indicator"></div>
-</section>
+  <section fm-tabs ng-if="session.flat" class="fm-tabs-wrapper">
+    <li fm-tab class="fm-tab" ng-click="changePaneTo(0)">Mis tareas</li>
+    <li fm-tab class="fm-tab" ng-click="changePaneTo(1)">Tareas</li>
+    <div fm-indicator class="fm-indicator"></div>
+  </section>
+</div>
+
 <!-- TODO make a directive to show the task card -->
 <section class="fm-wrapper-panes" fm-panes selected="paneActive">
   <div fm-pane class="fm-pane">
@@ -27,7 +34,6 @@
         <div ng-if="!task.spin">
           <header>
             <i class="fm-card-icon-type fa fa-align-left"></i>
-            <i class="fm-card-icon-settings fa fa-ellipsis-v"></i>
           </header>
           <p>{{task.title}}</p>
           <button class="fm-button-soft to-right"
@@ -37,8 +43,7 @@
         </div>
         <div ng-if="task.spin">
           <header>
-            <i class="fm-card-icon-type fa fa-align-left"></i>
-            <i class="fm-card-icon-settings fa fa-ellipsis-v"></i>
+            <i class="fm-card-icon-type fa fa-rotate-right"></i>
           </header>
           <p>{{task.title}}: {{task.history | spinTaskForMe}}</p>
           <button class="fm-button-soft to-right"
@@ -72,7 +77,6 @@
         <div ng-if="!task.spin">
           <header>
             <i class="fm-card-icon-type fa fa-align-left"></i>
-            <i class="fm-card-icon-settings fa fa-ellipsis-v"></i>
           </header>
           <p>
             {{task.title}}
@@ -88,15 +92,14 @@
         </div>
         <div ng-if="task.spin">
           <header>
-            <i class="fm-card-icon-type fa fa-align-left"></i>
-            <i class="fm-card-icon-settings fa fa-ellipsis-v"></i>
+            <i class="fm-card-icon-type fa fa-rotate-right"></i>
           </header>
           <p>
             {{task.title}}
             <ul>
               <li ng-repeat="subtask in task.history[task.history.length - 1].subtasks"
               ng-if="!subtask.done">
-                - {{subtask.subtask.value}}, done: {{subtask.done}}
+                - {{subtask.subtask.value}}
                 <span class="fm-cad-who">
                   <i class="fa fa-long-arrow-right"></i>
                   {{subtask.who | whoIs :session.flat.mates}}

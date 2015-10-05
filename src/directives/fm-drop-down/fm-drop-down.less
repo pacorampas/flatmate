@@ -1,0 +1,72 @@
+@import '../../less/vars';
+
+.fm-drop-down {
+  position: relative;
+  float: right;
+
+  .fm-icon {
+    position: absolute;
+    right: 0;
+    z-index: 2;
+  }
+
+  .fm-select-drop-down {
+    display: block;
+    position: relative;
+    min-width: 120px;
+    right: 0;
+    margin-top: 8px;
+    margin-right: 8px;
+    padding: 4px 0;
+    background: #fff;
+    color: #333;
+    border-radius: 4px;
+    z-index: -1;
+    box-shadow: @shadow;
+    opacity: 0;
+    transition: opacity 0.2s;
+
+    li {
+      font-size: 12px;
+      padding: 4px 16px;
+
+      a, button {
+        display: block;
+        line-height: inherit;
+        color: inherit;
+        font-size: inherit;
+      }
+
+      button {
+        border: 0;
+        background: transparent;
+      }
+
+      a {
+        text-decoration: none;
+      }
+    }
+  }
+
+  .close {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+  }
+
+  &.open {
+
+    .fm-select-drop-down {
+      opacity: 1;
+      z-index: 3;
+    }
+
+    .close {
+      display: block;
+    }
+  }
+}
