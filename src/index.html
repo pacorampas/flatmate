@@ -36,8 +36,7 @@
   <script type="text/javascript" src="directives/fm-panes/fm-panes.js"></script>
   <script type="text/javascript" src="directives/fm-main-button/fm-main-button.js"></script>
   <script type="text/javascript" src="directives/fm-main-button/fm-main-button-action.js"></script>
-  <script type="text/javascript" src="directives/fm-scroller/fm-scroller.js"></script>
-  <script type="text/javascript" src="directives/fm-scroller/fm-sticky.js"></script>
+  <script type="text/javascript" src="directives/fm-sticky/fm-sticky.js"></script>
   <script type="text/javascript" src="directives/validationDirectives.js"></script>
   <script type="text/javascript" src="directives/fm-spin-subtask/fm-spin-subtask.js"></script>
   <script type="text/javascript" src="directives/fm-drop-down/fm-drop-down.js"></script>
@@ -52,6 +51,6 @@
 
 </head>
 <body>
-  <section class="fm-screen" ng-view fm-scroller></section>
+  <section class="fm-screen" fm-sticky top="56" ng-view></section>
 </body>
 </html>
