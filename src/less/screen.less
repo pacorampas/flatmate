@@ -49,22 +49,25 @@
 }
 
 .fm-header {
-  height: 56px;
+  height: 44px;
   padding: 0 6px;
-  line-height: 24px;
+  line-height: 44px;
+  margin-bottom: 8px;
+  text-align: center;
+  color: @dark;
 
   h4 {
     display: inline-block;
-    line-height: 56px;
-    margin-left: 8px;
-  }
-
-  .fm-icon ~ h4 {
-    margin-left: 16px;
+    text-align: center;
   }
 
   &.corporative {
     background: @corporative;
     color: @white;
+  }
+
+  .fm-icon.left {
+    position: absolute;
+    left: 0;
   }
 }

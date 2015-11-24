@@ -1,15 +1,17 @@
 <header class="fm-header">
-  <h4 class="fm-regular">Login</h4>
+  <h4>Login</h4>
 </header>
 
 <form novalidate class="fm-form collapse" name="loginForm">
   <div class="fm-form-row">
+    <label>EMAIL</label>
     <input class="fm-input" type="text" ng-model="email" name="email" ng-required="true" email placeholder="example@domain.com">
     <p class="fm-input-error" ng-show="loginForm.$submitted && loginForm.email.$error.required">Obligatorio</p>
     <p class="fm-input-error" ng-show="loginForm.$submitted && loginForm.email.$error.email">Debe ser un email válido</p>
   </div>
 
   <div class="fm-form-row last-child">
+    <label>CONTRASEÑA</label>
     <input class="fm-input" type="password" ng-model="password" name="password" ng-required="true" ng-minlength="6" placeholder="password">
     <p class="fm-input-error" ng-show="loginForm.$submitted && loginForm.password.$error.minlength">Debe contener por lo menos 6 carácteres</p>
     <p class="fm-input-error" ng-show="loginForm.$submitted && loginForm.password.$error.required">Obligatorio</p>
