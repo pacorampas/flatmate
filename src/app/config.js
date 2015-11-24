@@ -16,7 +16,7 @@
     //TODO, use controllerAs and remove $scope of controllers
     $routeProvider.
       when('/login', {
-        templateUrl: 'views/login.html',
+        templateUrl: 'views/login/login.html',
         controller: 'loginController',
         //TODO: think to controlate the authentication state with
         //$locationChangeStart event
@@ -27,7 +27,7 @@
         }
       }).
       when('/singup', {
-        templateUrl: 'views/singup.html',
+        templateUrl: 'views/singup/singup.html',
         controller: 'singupController',
         resolve: {
           isloggedIn: function($rootScope, userFactory) {
