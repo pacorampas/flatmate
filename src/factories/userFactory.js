@@ -19,6 +19,7 @@
     var server = serverConfig.server;
 
     function updateSessionFlat(flat) {
+      console.log(flat);
       $rootScope.session.flat = flat;
       //the owner is a mate for the client side
       if ($rootScope.session.flat) {
