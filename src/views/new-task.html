@@ -1,11 +1,11 @@
 <header class="fm-header">
-  <button class="fm-icon" ng-click="back()">
-    <i class="fa fa-arrow-left"></i>
+  <button class="fm-icon left" ng-click="back()">
+    <i class="fa fa-angle-left"></i>
   </button>
   <h4 class="fm-regular">Nueva Tarea</h4>
 </header>
 
-<form novalidate class="fm-form" name="newTaskForm">
+<form novalidate class="fm-form fm-content" name="newTaskForm">
   <div class="fm-form-row">
     <label>Descripción:</label>
     <input class="fm-input" type="text" ng-model="newTask.title" name="title"
