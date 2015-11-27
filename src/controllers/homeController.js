@@ -15,7 +15,10 @@
 
   function homeController($scope, $rootScope, $location, userFactory,
                                                                   flatFactory) {
-    $scope.paneActive = 0;
+    $scope.panes = {
+      myTasksActive: true,
+      tasksActive: false
+    }
 
     $scope.logout = function() {
       userFactory.logout();
@@ -33,7 +36,14 @@
     };
 
     $scope.changePaneTo = function(pane) {
-      $scope.paneActive = pane;
+      console.log(pane);
+      if (pane === 0 && !$scope.panes.myTasksActive) {
+        $scope.panes.myTasksActive = true;
+        $scope.panes.tasksActive = false;
+      } else if (pane === 1 && !$scope.panes.tasksActive) {
+        $scope.panes.myTasksActive = false;
+        $scope.panes.tasksActive = true;
+      }
     }
 
     $scope.newFlatButton = function() {

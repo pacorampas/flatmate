@@ -36,23 +36,13 @@
   transition: left 1s, width 1s;
 }
 
-.fm-wrapper-panes {
-  -webkit-transition: transform 1s;
-  transition: transform 1s;
-}
-
-.fm-panes {
+.fm-pane {
   width: 100%;
-  white-space: nowrap;
-  font-size: 0;
+  display: none;
+  background: @light;
 
-  .fm-pane {
-    width: 100%;
+  &.active {
     display: inline-block;
-    vertical-align: top;
-    white-space: normal;
-    background: @light;
-    font-size: 16px;
   }
 }
 
