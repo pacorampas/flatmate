@@ -4,7 +4,8 @@
   angular.module('flatMate',
     [
       'ngRoute',
-      'ngAnimate'
+      'ngAnimate',
+      'flatMateUI'
     ]
   );
 

@@ -2,7 +2,7 @@
   'use strict';
 
   angular
-    .module('flatMate')
+    .module('flatMateUI')
     .directive('fmButton', fmButton);
 
   function fmButton() {
