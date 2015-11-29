@@ -3,7 +3,7 @@
 
   angular.module('flatMate',
     [
-      'ngRoute',
+      'ui.router',
       'ngAnimate',
       'flatMateUI'
     ]
