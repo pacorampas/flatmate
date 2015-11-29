@@ -49,11 +49,6 @@
       });
     }
 
-    $scope.addNewSubtask = function(event) {
-      event.preventDefault();
-      $scope.newTask.subtasks.push({value: ''});
-    }
-
     $scope.back = function() {
       $location.path('home');
     }

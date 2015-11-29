@@ -1,1 +1,51 @@
-Home taskss
+<section class="fm-wrapper" ng-repeat="period in session.flat.periods track by $index">
+  <header class="fm-list-header">
+    <span>PERIOD {{period.period}}</span>
+  </header>
+  <ul class="fm-list">
+    <li class="fm-list-item has-icon" ng-repeat="task in period.tasks">
+      {{task.value}}
+      <i class="fm-list-icon fa fa-angle-right"></i>
+    </li>
+  </ul>
+</section>
+<!--ul class="fm-cards-wrapper">
+  <li class="fm-card clear" ng-repeat="task in session.flat.tasks track by $index"
+      ng-if="(task | isMyTask :session.flat.mates) && !(task | taskIsDone)">
+    <div ng-if="!task.spin">
+      <header>
+        <i class="fm-card-icon-type fa fa-align-left"></i>
+      </header>
+      <p>{{task.title}}</p>
+      <button class="fm-button-soft to-right"
+              ng-click="markTaskAsDone(task)">
+        Finalizar tarea
+      </button>
+    </div>
+    <div ng-if="task.spin">
+      <header>
+        <i class="fm-card-icon-type fa fa-rotate-right"></i>
+      </header>
+      <p>{{task.title}}: {{task.history | spinTaskForMe}}</p>
+      <button class="fm-button-soft to-right"
+              ng-click="markTaskAsDone(task)">
+        Finalizar tarea
+      </button>
+    </div>
+  </li>
+
+  <li class="fm-empty-card-list" ng-if="messageEmptyFlatOrTasks()">
+    {{messageEmptyFlatOrTasks()}}
+    <div ng-if="!session.flat">
+      <button class="fm-button" ng-click="newFlatButton()">
+        Crear piso
+      </button>
+    </div>
+  </li>
+
+  <li class="fm-empty-card-list"
+      ng-if="session.flat.tasks && !messageEmptyFlatOrTasks() &&
+             (session.flat.tasks | noTasksForMe :session.flat.mates)">
+    No tienes tareas pendientes
+  </li>
+</ul-->
