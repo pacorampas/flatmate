@@ -2,32 +2,29 @@
   <button class="fm-icon left" ng-click="back()">
     <i class="fa fa-angle-left"></i>
   </button>
-  <h4 class="fm-regular">Nueva Tarea</h4>
+  <h4 class="fm-regular">Nueva Tarea2</h4>
 </header>
 
 <form novalidate class="fm-form fm-content" name="newTaskForm">
   <div class="fm-form-row">
     <label>Descripción:</label>
-    <input class="fm-input" type="text" ng-model="newTask.title" name="title"
-           ng-required="true" placeholder="la descripción de la tarea...">
+    <input class="fm-input" type="text" ng-model="newTask.tasks[0].value" name="value"
+           ng-required="true" placeholder="escribe la descripción de la tarea...">
     <p class="fm-input-error"
-       ng-show="newTaskForm.$submitted && newTaskForm.title.$error.required">
+       ng-show="newTaskForm.$submitted && newTaskForm.value.$error.required">
       Obligatorio
     </p>
   </div>
 
   <div class="fm-select fm-form-row" fm-select
-      options="session.flat.mates"
-      selected="newTask.who"
-      selected-key="'_id'"
-      selected-value-key="'email'"
-      default-value="'Cualquiera'"
-      label="'Quien debe realizarla:'">
+       options="periodOptions"
+       selected="newTask.period"
+       label="'Periodo de repetición:'">
   </div>
 
   <div class="fm-wrapper-push-bottom">
     <button class="fm-button" fm-button
-            loading="acceptButton.loading"
+            loading="acceptButtonds.loading"
             active="!acceptButton.loading"
             ng-click="save()">
       ACEPTAR

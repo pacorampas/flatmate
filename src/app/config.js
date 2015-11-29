@@ -14,12 +14,12 @@
   function config($stateProvider, $urlRouterProvider, $httpProvider) {
     $httpProvider.interceptors.push('httpRequestInterceptor');
 
-    $urlRouterProvider.otherwise("/login");
+    $urlRouterProvider.otherwise('/login');
 
     //TODO, use controllerAs and remove $scope of controllers
     $stateProvider
       .state('login', {
-        url: "/login",
+        url: '/login',
         templateUrl: 'views/login/login.html',
         controller: 'loginController',
         resolve: {
@@ -29,7 +29,7 @@
         }
       })
       .state('singup', {
-        url: "/singup",
+        url: '/singup',
         templateUrl: 'views/singup/singup.html',
         controller: 'singupController',
         resolve: {
@@ -39,7 +39,7 @@
         }
       })
       .state('home', {
-        url: "/home",
+        url: '/home',
         templateUrl: 'views/home/home.html',
         controller: 'homeController',
         resolve: {
@@ -49,7 +49,7 @@
         }
       })
       .state('home.basket', {
-        url: "/basket",
+        url: '/basket',
         templateUrl: 'views/home/basket/basket.html',
         controller: 'basketController',
         resolve: {
@@ -59,7 +59,7 @@
         }
       })
       .state('home.home-tasks', {
-        url: "/home-tasks",
+        url: '/home-tasks',
         templateUrl: 'views/home/tasks/home-tasks.html',
         controller: 'homeTasksController',
         resolve: {
@@ -69,7 +69,7 @@
         }
       })
       .state('new-flat', {
-        url: "/new-flat",
+        url: '/new-flat',
         templateUrl: 'views/flat/new-flat.html',
         controller: 'flatController',
         resolve: {
@@ -79,7 +79,7 @@
         }
       })
       .state('edit-flat', {
-        url: "/edit-flat",
+        url: '/edit-flat',
         templateUrl: 'views/flat/edit-flat.html',
         controller: 'flatController',
         resolve: {
@@ -89,7 +89,7 @@
         }
       })
       .state('new-task', {
-        url: "/new-task",
+        url: '/new-task',
         templateUrl: 'views/flat/task/new-task.html',
         controller: 'newTaskController',
         resolve: {
@@ -98,16 +98,7 @@
           }
         }
       })
-      .state('new-spin-task', {
-        url: "/new-spin-task",
-        templateUrl: 'views/flat/task/new-spin-task.html',
-        controller: 'newSpinTaskController',
-        resolve: {
-          isloggedIn: function($rootScope, userFactory) {
-            return userFactory.isLoggedIn();
-          }
-        }
-      })
+
   }
 
 })();

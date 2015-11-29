@@ -76,7 +76,7 @@
       },
       addSpinTask: function(flatId, task) {
         return $q(function(resolve, reject) {
-          $http.post(server+'/apis/flat/'+flatId+'/spin-task', task)
+          $http.post(server+'/apis/flat/'+flatId+'/new-task', task)
                                                           .then(function(resp) {
             userFactory.updateSessionFlat(resp.data);
             resolve(resp);

@@ -10,7 +10,13 @@ module.exports = function(grunt) {
       },
       my_target: {
         files: {
-          'dest/app.js': ['src/*.js', 'src/*/*.js']
+          'dest/app.js': [
+            'src/*.js',
+            'src/*/*.js',
+            'src/*/*/*.js',
+            'src/*/*/*/*.js',
+            'src/*/*/*/*/*.js'
+          ]
         }
       },
       min: {
@@ -19,6 +25,8 @@ module.exports = function(grunt) {
             'src/*.js',
             'src/**/*.js',
             'src/**/**/*.js',
+            'src/**/**/**/*.js',
+            'src/**/**/**/**/*.js',
             'node_modules/angular/angular.min.js',
             'node_modules/angular-ui-router/release/angular-ui-router.min.js',
             'bower_components/angular-route/angular-route.js',
@@ -44,7 +52,9 @@ module.exports = function(grunt) {
           [
             'src/*.html',
             'src/**/*.html',
-            'src/**/**/*.html'
+            'src/**/**/*.html',
+            'src/**/**/**/*.html',
+            'src/**/**/**/**/*.html'
           ],
           'dest/',
           {
@@ -89,7 +99,7 @@ module.exports = function(grunt) {
           ]
         },
         files: {
-          'dest/css/style.css': ['*.less', '*/*.less', '*/*/*.less', '*/*/*.less']
+          'dest/css/style.css': ['*.less', '*/*.less', '*/*/*.less', '*/*/*/*.less']
         }
       }
     },
@@ -111,14 +121,14 @@ module.exports = function(grunt) {
     clean: ['dest'],
     watch: {
       scripts: {
-        files: ['*','*/*', '*/*/*', '*/*/*/*'],
+        files: ['*','*/*', '*/*/*', '*/*/*/*', '*/*/*/*/*'],
         tasks: ['build'],
         options: {
           spawn: false,
         }
       },
       local: {
-        files: ['*','*/*', '*/*/*', '*/*/*/*'],
+        files: ['*','*/*', '*/*/*', '*/*/*/*', '*/*/*/*/*'],
         tasks: ['build-local'],
         options: {
           spawn: false,

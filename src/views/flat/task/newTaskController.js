@@ -14,10 +14,20 @@
 
   function newTaskController($rootScope, $scope, $location, flatFactory) {
     $scope.newTask = {
-      title: '',
-      who: null,
-      spin: false
+      period: null,
+      tasks: [
+        {
+          value: ''
+        }
+      ]
     }
+
+    $scope.periodOptions = [
+      'Diario',
+      'Semanal',
+      'Mensual',
+      'Anual'
+    ];
 
     $scope.acceptButton = { loading: false };
 
@@ -26,17 +36,27 @@
         return;
       }
       $scope.acceptButton.loading = true;
+
       //TODO catch errors
-      flatFactory.addTask($rootScope.session.flat._id, $scope.newTask)
-                                                            .then(function(resp) {
+      console.log($scope.newTask);
+
+      flatFactory.addSpinTask($rootScope.session.flat._id, $scope.newTask)
+                                                          .then(function(resp) {
         $scope.acceptButton.loading = false;
         $location.path('home');
+      }).catch(function(err) {
+        console.log(err);
       });
+    }
+
+    $scope.addNewSubtask = function(event) {
+      event.preventDefault();
+      $scope.newTask.subtasks.push({value: ''});
     }
 
     $scope.back = function() {
       $location.path('home');
     }
-  };
+  }
 
 })();
