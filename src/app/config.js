@@ -40,7 +40,7 @@
       })
       .state('home', {
         url: "/home",
-        templateUrl: 'views/home.html',
+        templateUrl: 'views/home/home.html',
         controller: 'homeController',
         resolve: {
           isloggedIn: function($rootScope, userFactory) {
@@ -70,7 +70,7 @@
       })
       .state('new-flat', {
         url: "/new-flat",
-        templateUrl: 'views/new-flat.html',
+        templateUrl: 'views/flat/new-flat.html',
         controller: 'flatController',
         resolve: {
           isloggedIn: function($rootScope, userFactory) {
@@ -80,7 +80,7 @@
       })
       .state('edit-flat', {
         url: "/edit-flat",
-        templateUrl: 'views/edit-flat.html',
+        templateUrl: 'views/flat/edit-flat.html',
         controller: 'flatController',
         resolve: {
           isloggedIn: function($rootScope, userFactory) {
@@ -90,7 +90,7 @@
       })
       .state('new-task', {
         url: "/new-task",
-        templateUrl: 'views/new-task.html',
+        templateUrl: 'views/flat/task/new-task.html',
         controller: 'newTaskController',
         resolve: {
           isloggedIn: function($rootScope, userFactory) {
@@ -100,7 +100,7 @@
       })
       .state('new-spin-task', {
         url: "/new-spin-task",
-        templateUrl: 'views/new-spin-task.html',
+        templateUrl: 'views/flat/task/new-spin-task.html',
         controller: 'newSpinTaskController',
         resolve: {
           isloggedIn: function($rootScope, userFactory) {
