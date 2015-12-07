@@ -124,4 +124,66 @@
     };
   };
 
+  angular
+    .module('flatMate')
+    .filter('matchTaskWithMate', matchTaskWithMate);
+
+  matchTaskWithMate.$inject = [
+    '$rootScope'
+  ];
+
+  function matchTaskWithMate($rootScope) {
+    return function(task, idPeriod) {
+      var periods = $rootScope.session.flat.periods;
+      var mates = $rootScope.session.flat.mates;
+
+      var period = null;
+      for(var i = 0, l = periods.length; i < l; i++) {
+        if (periods[i]._id === idPeriod) {
+          period = periods[i];
+          break;
+        }
+      }
+
+      var distributionItem = null;
+      if (period) {
+        var distribution = period.history[period.history.length-1].distribution;
+        for(var i = 0, l = distribution.length; i < l; i++) {
+          if (distribution[i].task === task._id) {
+            distributionItem = distribution[i];
+            break;
+          }
+        }
+      }
+
+      if (distributionItem) {
+        for(var i = 0, l = mates.length; i < l; i++) {
+          if (mates[i]._id === distributionItem.who) {
+            return mates[i];
+          }
+        }
+      }
+
+      return;
+    };
+  };
+
+  angular
+    .module('flatMate')
+    .filter('whichPeriodIs', whichPeriodIs);
+
+  function whichPeriodIs() {
+    return function(periodCode) {
+      if (periodCode === 1) {
+        return 'SEMANALES';
+      } else if (periodCode === 0) {
+        return 'DIARIAS';
+      } else if (periodCode === 2) {
+        return 'MENSUALES';
+      } else if (periodCode === 3) {
+        return 'ANUALES';
+      }
+    };
+  };
+
 })();

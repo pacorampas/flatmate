@@ -2,16 +2,16 @@
   <button class="fm-icon left" ng-click="back()">
     <i class="fa fa-angle-left"></i>
   </button>
-  <h4>Nueva Tarea2</h4>
+  <h4>Nueva Tarea</h4>
 </header>
 
 <form novalidate class="fm-form fm-content" name="newTaskForm">
   <div class="fm-form-row">
     <label>Descripción:</label>
-    <input class="fm-input" type="text" ng-model="newTask.tasks[0].value" name="value"
+    <input class="fm-input" type="text" ng-model="newTask.tasks[0]" name="task"
            ng-required="true" placeholder="escribe la descripción de la tarea...">
     <p class="fm-input-error"
-       ng-show="newTaskForm.$submitted && newTaskForm.value.$error.required">
+       ng-show="newTaskForm.$submitted && newTaskForm.task.$error.required">
       Obligatorio
     </p>
   </div>

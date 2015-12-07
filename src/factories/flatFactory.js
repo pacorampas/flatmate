@@ -78,7 +78,21 @@
         return $q(function(resolve, reject) {
           $http.post(server+'/apis/flat/'+flatId+'/new-task', task)
                                                           .then(function(resp) {
-            userFactory.updateSessionFlat(resp.data);
+            //update periods for refresh data on view
+            var periods = $rootScope.session.flat.periods;
+            var existPeriod = false;
+            for(var i = 0, l = periods.length; i < l; i++){
+              if (periods[i].period === task.period) {
+                $rootScope.session.flat.periods[i] = resp.data;
+                existPeriod = true;
+                break;
+              }
+            }
+
+            if (!existPeriod) {
+              $rootScope.session.flat.periods.push(resp.data);
+            }
+
             resolve(resp);
           }).catch(function(err) {
             reject(err);

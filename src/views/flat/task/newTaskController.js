@@ -15,11 +15,7 @@
   function newTaskController($rootScope, $scope, $location, flatFactory) {
     $scope.newTask = {
       period: null,
-      tasks: [
-        {
-          value: ''
-        }
-      ]
+      tasks: []
     }
 
     $scope.periodOptions = [
@@ -38,12 +34,10 @@
       $scope.acceptButton.loading = true;
 
       //TODO catch errors
-      console.log($scope.newTask);
-
       flatFactory.addSpinTask($rootScope.session.flat._id, $scope.newTask)
                                                           .then(function(resp) {
         $scope.acceptButton.loading = false;
-        $location.path('home');
+        $location.path('home/home-tasks');
       }).catch(function(err) {
         console.log(err);
       });
