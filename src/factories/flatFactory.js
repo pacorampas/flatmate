@@ -99,6 +99,18 @@
           });
         });
       },
+      updateTask: function(flatId, periodId, task) {
+        return $q(function(resolve, reject) {
+          $http.put(server+'/apis/flat/'+flatId+'/period/'+periodId+'/task/'+
+              task.id, task).then(function(resp) {
+
+            console.log(resp);
+            resolve(resp);
+          }).catch(function(err) {
+            reject(err);
+          });
+        });
+      },
       markTaskAsDone: function(flat, task) {
         return $q(function(resolve, reject) {
           $http.post(server+'/apis/flat/'+flat._id+'/task/'+task._id)

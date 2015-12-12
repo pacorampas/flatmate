@@ -6,26 +6,16 @@
     .controller('newTaskController', newTaskController);
 
   newTaskController.$inject = [
+    '$controller',
     '$rootScope',
-    '$scope',
-    '$location',
-    'flatFactory'
+    '$scope'
   ];
 
-  function newTaskController($rootScope, $scope, $location, flatFactory) {
-    $scope.newTask = {
-      period: null,
-      tasks: []
-    }
+  function newTaskController($controller, $rootScope, $scope) {
 
-    $scope.periodOptions = [
-      'Diario',
-      'Semanal',
-      'Mensual',
-      'Anual'
-    ];
-
-    $scope.acceptButton = { loading: false };
+    $controller('taskController', {
+      $scope: $scope
+    });
 
     $scope.save = function() {
       if (!$scope.newTaskForm.$valid) {
@@ -33,19 +23,17 @@
       }
       $scope.acceptButton.loading = true;
 
-      //TODO catch errors
-      flatFactory.addSpinTask($rootScope.session.flat._id, $scope.newTask)
-                                                          .then(function(resp) {
+      //TODO catch errors with dialog
+      $scope.flatFactory.addSpinTask($rootScope.session.flat._id, $scope.newTask)
+          .then(function(resp) {
+
         $scope.acceptButton.loading = false;
-        $location.path('home/home-tasks');
+        $scope.$location.path('home/home-tasks');
       }).catch(function(err) {
         console.log(err);
       });
     }
 
-    $scope.back = function() {
-      $location.path('home');
-    }
   }
 
 })();

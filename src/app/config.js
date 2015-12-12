@@ -98,7 +98,16 @@
           }
         }
       })
-
+      .state('home.home-tasks.edit-task', {
+        url: '/edit-task/:taskId',
+        templateUrl: 'views/flat/task/edit-task.html',
+        controller: 'editTaskController',
+        resolve: {
+          isloggedIn: function($rootScope, userFactory) {
+            return userFactory.isLoggedIn();
+          }
+        }
+      })
   }
 
 })();
