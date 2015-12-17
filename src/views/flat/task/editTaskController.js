@@ -25,7 +25,6 @@
       }
 
       $scope.acceptButton.loading = true;
-      console.log($scope.newTask);
       //TODO catch errors
       $scope.flatFactory.updateTask($rootScope.session.flat._id,
           $scope.newTask.oldPeriodId, $scope.newTask).then(function(resp) {

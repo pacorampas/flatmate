@@ -24,7 +24,7 @@
       $scope.acceptButton.loading = true;
 
       //TODO catch errors with dialog
-      $scope.flatFactory.addSpinTask($rootScope.session.flat._id, $scope.newTask)
+      $scope.flatFactory.addTask($rootScope.session.flat._id, $scope.newTask)
           .then(function(resp) {
 
         $scope.acceptButton.loading = false;

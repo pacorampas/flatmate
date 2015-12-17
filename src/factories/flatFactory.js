@@ -33,6 +33,16 @@
       return matesNotRegistered;
     }
 
+    function getPeriodPosById(id) {
+      var periods = $rootScope.session.flat.periods;
+      for(var i = 0, l = periods.length; i < l; i++) {
+        if(periods[i]._id == id) {
+          return i;
+        }
+      }
+      return false;
+    }
+
     return {
       getAll: function() {
         return $http.get(server+'/apis/flats/all');
@@ -65,17 +75,6 @@
       },
       addTask: function(flatId, task) {
         return $q(function(resolve, reject) {
-          $http.post(server+'/apis/flat/'+flatId+'/task', task)
-                                                          .then(function(resp) {
-            userFactory.updateSessionFlat(resp.data);
-            resolve(resp);
-          }).catch(function(err) {
-            reject(err);
-          });
-        });
-      },
-      addSpinTask: function(flatId, task) {
-        return $q(function(resolve, reject) {
           $http.post(server+'/apis/flat/'+flatId+'/new-task', task)
                                                           .then(function(resp) {
             //update periods for refresh data on view
@@ -103,8 +102,17 @@
         return $q(function(resolve, reject) {
           $http.put(server+'/apis/flat/'+flatId+'/period/'+periodId+'/task/'+
               task.id, task).then(function(resp) {
+            var fromPeriod = resp.data.fromPeriod;
+            var toPeriod = resp.data.toPeriod;
+            var fromIndex = getPeriodPosById(fromPeriod._id);
 
-            console.log(resp);
+            $rootScope.session.flat.periods[fromIndex] = fromPeriod;
+
+            if (fromPeriod._id != toPeriod._id) {
+              var toIndex = getPeriodPosById(toPeriod._id);
+              $rootScope.session.flat.periods[toIndex] = toPeriod;
+            }
+
             resolve(resp);
           }).catch(function(err) {
             reject(err);
