@@ -27,7 +27,7 @@
 
       userFactory.login($scope.email, $scope.password).then(function(resp) {
         $scope.acceptButton.loading = false;
-        $location.path('home');
+        $location.path('home/home-tasks');
       }).catch(function(err) {
         alert('Bad credentials.');
         $scope.acceptButton.loading = false;

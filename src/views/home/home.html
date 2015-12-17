@@ -2,16 +2,6 @@
   <h4>
     {{session.flat.name}}
   </h4>
-  <ul class="push-right" fm-drop-down>
-    <li ng-if="session._id === session.flat.owner._id">
-      <a href="#/edit-flat">
-        EDITAR PISO
-      </a>
-    </li>
-    <li>
-      <button ng-click="logout()">POWER OFF</button>
-    </li>
-  </ul>
 </header>
 
 <section class="fm-pane fm-content gap-bottom scroll" ui-view></section>
@@ -19,5 +9,6 @@
 <section fm-tabs ng-if="session.flat" class="fm-tabs" role="tab-bar">
   <li fm-tab class="fm-tab" ui-sref="home.home-tasks">Tareas</li>
   <li fm-tab class="fm-tab" ui-sref="home.basket">Despensa</li>
+  <li fm-tab class="fm-tab" ui-sref="home.menu">Menu</li>
   <div fm-indicator class="fm-indicator"></div>
 </section>

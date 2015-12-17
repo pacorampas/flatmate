@@ -10,11 +10,7 @@
   ];
 
   function basketController($scope) {
-    activate();
 
-    function activate() {
-     console.log('Active :) !!');
-    }
   };
 
 })();

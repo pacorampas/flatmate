@@ -82,7 +82,7 @@
                 updateSessionFlat(resp.data.user.flat);
 
                 if (publicPath) {
-                  $location.path('home');
+                  $location.path('home/home-tasks');
                   reject(false);
                 } else {
                   resolve(true);

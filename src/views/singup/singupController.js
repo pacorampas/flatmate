@@ -32,7 +32,7 @@
           //now it is happen but when you refresh the session is lost
           userFactory.login($scope.email, $scope.password).then(function(resp) {
             $scope.acceptButton.loading = false;
-            $location.path('home');
+            $location.path('home/home-tasks');
           });
         }).catch(function(err) {
           console.log(err);

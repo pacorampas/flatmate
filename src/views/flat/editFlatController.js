@@ -35,7 +35,7 @@
 
       flatFactory.update(flat).then(function(resp) {
         //TODO ver que hacer con los resp.matesNotRegistered
-        $location.path('home');
+        $location.path('home/home-tasks');
         $scope.acceptButton.loading = false;
       }).catch(function(err) {
         console.log(err);

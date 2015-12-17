@@ -77,13 +77,18 @@
 }
 
 .fm-tabs[role='tab-bar'] {
-  width: 100%;
   position: fixed;
   bottom: 0;
   border-top: solid 1px @gray;
 
+  ul {
+    display: table;
+    width: 100%;
+  }
+
   .fm-tab {
-    width: 50%;
+    float: none;
+    display: table-cell;
     text-align: center;
   }
 }

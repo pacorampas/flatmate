@@ -68,6 +68,16 @@
           }
         }
       })
+      .state('home.menu', {
+        url: '/menu',
+        templateUrl: 'views/home/menu/menu.html',
+        controller: 'menuController',
+        resolve: {
+          isloggedIn: function($rootScope, userFactory) {
+            return userFactory.isLoggedIn();
+          }
+        }
+      })
       .state('new-flat', {
         url: '/new-flat',
         templateUrl: 'views/flat/new-flat.html',

@@ -56,7 +56,7 @@
     }
 
     $scope.back = function() {
-      $location.path('home');
+      $location.path('home/home-tasks');
     }
   };
 
