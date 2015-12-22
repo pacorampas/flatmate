@@ -7,8 +7,17 @@
 <section class="fm-pane fm-content gap-bottom scroll" ui-view></section>
 
 <section fm-tabs ng-if="session.flat" class="fm-tabs" role="tab-bar">
-  <li fm-tab class="fm-tab" ui-sref="home.home-tasks">Tareas</li>
-  <li fm-tab class="fm-tab" ui-sref="home.basket">Despensa</li>
-  <li fm-tab class="fm-tab" ui-sref="home.menu">Menu</li>
+  <li fm-tab class="fm-tab label" ui-sref="home.home-tasks">
+    <i class="fm-list-icon fa fa-calendar"></i>
+    <span>TAREAS</span>
+  </li>
+  <li fm-tab class="fm-tab label" ui-sref="home.basket">
+    <i class="fm-list-icon fa fa-shopping-cart"></i>
+    <span>COMPRAS</span>
+  </li>
+  <li fm-tab class="fm-tab label" ui-sref="home.menu">
+    <i class="fm-list-icon fa fa-bars"></i>
+    <span>MENÚ</span>
+  </li>
   <div fm-indicator class="fm-indicator"></div>
 </section>
