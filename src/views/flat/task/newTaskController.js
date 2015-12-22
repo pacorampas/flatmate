@@ -12,7 +12,6 @@
   ];
 
   function newTaskController($controller, $rootScope, $scope) {
-
     $controller('taskController', {
       $scope: $scope
     });

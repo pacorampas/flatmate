@@ -1,0 +1,30 @@
+<section class="fm-modal-content">
+  <header class="fm-header">
+    <button class="fm-icon left" ng-click="back()">
+      <i class="fa fa-angle-left"></i>
+    </button>
+    <h4>Nuevo alimento</h4>
+  </header>
+
+  <form novalidate class="fm-form fm-content" name="newBasketItemForm">
+    <div class="fm-form-row">
+      <label>Alimento:</label>
+      <input class="fm-input" type="text" ng-model="newBasketItem.name"
+          name="name" ng-required="true"
+          placeholder="escribe el nombre del alimeto...">
+      <p class="fm-input-error"
+         ng-show="newBasketItemForm.$submitted && newBasketItemForm.name.$error.required">
+        Obligatorio
+      </p>
+    </div>
+
+    <div class="fm-wrapper-push-bottom">
+      <button class="fm-button" fm-button
+              loading="acceptButtonds.loading"
+              active="!acceptButton.loading"
+              ng-click="save()">
+        ACEPTAR
+      </button>
+    </div>
+  </form>
+</section>

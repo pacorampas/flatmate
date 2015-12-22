@@ -6,14 +6,16 @@
     .controller('taskController', taskController);
 
   taskController.$inject = [
+    '$controller',
     '$scope',
     '$location',
     'flatFactory'
   ];
 
-  function taskController($scope, $location, flatFactory) {
-    $scope.$location = $location;
-    $scope.flatFactory = flatFactory;
+  function taskController($controller, $scope, $location) {
+    $controller('newBaseController', {
+      $scope: $scope
+    });
 
     $scope.newTask = {
       period: null,
@@ -26,12 +28,6 @@
       'Mensual',
       'Anual'
     ];
-
-    $scope.acceptButton = { loading: false };
-
-    $scope.back = function() {
-      $location.path('home/home-tasks');
-    }
   }
 
 })();
