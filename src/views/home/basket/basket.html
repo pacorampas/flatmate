@@ -1,5 +1,13 @@
-<ul class="fm-list">
-  <li ng-repeat="item in session.flat.basket" class="fm-list-item">
-    {{item.name}}
-  </li>
-</ul>
+<header class="fm-header">
+  <h4>
+    Despensa
+  </h4>
+</header>
+
+<section class="fm-pane fm-content gap-bottom scroll">
+  <ul class="fm-list">
+    <li ng-repeat="item in session.flat.basket" class="fm-list-item">
+      {{item.name}}
+    </li>
+  </ul>
+</section>

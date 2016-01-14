@@ -1,22 +1,30 @@
-<section class="fm-wrapper"
-    ng-repeat="period in session.flat.periods
-    | orderBy:'period' track by $index"
-    ng-if="period.tasks.length">
+<header class="fm-header">
+  <h4>
+    Tareas
+  </h4>
+</header>
 
-  <header class="fm-list-header">
-    <span>{{period.period | whichPeriodIs}}</span>
-  </header>
+<section class="fm-pane fm-content gap-bottom scroll">
+  <section class="fm-wrapper"
+      ng-repeat="period in session.flat.periods
+      | orderBy:'period' track by $index"
+      ng-if="period.tasks.length">
 
-  <ul class="fm-list">
-    <li class="fm-list-item has-icon" ng-repeat="task in period.tasks"
-        ng-click="$parent.$parent.goToEditTask(task, period)">
-      {{task.value}}
-      <span class="float-right">
-        {{(task | matchTaskWithMate :period._id).email}}
-      </span>
-      <i class="fm-list-icon fa fa-angle-right"></i>
-    </li>
-  </ul>
+    <header class="fm-list-header">
+      <span>{{period.period | whichPeriodIs}}</span>
+    </header>
+
+    <ul class="fm-list">
+      <li class="fm-list-item has-icon" ng-repeat="task in period.tasks"
+          ng-click="$parent.$parent.goToEditTask(task, period)">
+        {{task.value}}
+        <span class="float-right">
+          {{(task | matchTaskWithMate :period._id).email}}
+        </span>
+        <i class="fm-list-icon fa fa-angle-right"></i>
+      </li>
+    </ul>
+  </section>
 </section>
 
 <section ui-view class="fm-modal"></section>

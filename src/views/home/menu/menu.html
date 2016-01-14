@@ -1,13 +1,21 @@
-<ul class="fm-list">
-  <li class="fm-list-item has-icon"
-      ng-if="session._id === session.flat.owner._id"
-      ui-sref="edit-flat">
+<header class="fm-header">
+  <h4>
+    Menú
+  </h4>
+</header>
 
-    Edit flat
-    <i class="fm-list-icon fa fa-pencil"></i>
-  </li>
-  <li class="fm-list-item has-icon" ng-click="logout()">
-    Power off
-    <i class="fm-list-icon fa fa-power-off"></i>
-  </li>
-</ul>
+<section class="fm-pane fm-content gap-bottom scroll">
+  <ul class="fm-list">
+    <li class="fm-list-item has-icon"
+        ng-if="session._id === session.flat.owner._id"
+        ui-sref="edit-flat">
+
+      Edit flat
+      <i class="fm-list-icon fa fa-pencil"></i>
+    </li>
+    <li class="fm-list-item has-icon" ng-click="logout()">
+      Power off
+      <i class="fm-list-icon fa fa-power-off"></i>
+    </li>
+  </ul>
+</section>

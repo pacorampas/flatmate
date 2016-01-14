@@ -1,10 +1,4 @@
-<header class="fm-header">
-  <h4>
-    {{session.flat.name}}
-  </h4>
-</header>
-
-<section class="fm-pane fm-content gap-bottom scroll" ui-view></section>
+<section ui-view></section>
 
 <section fm-tabs ng-if="session.flat" class="fm-tabs" role="tab-bar">
   <li fm-tab class="fm-tab label" ui-sref="home.home-tasks">
