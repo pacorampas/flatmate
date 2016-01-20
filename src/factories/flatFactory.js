@@ -141,6 +141,17 @@
             reject(err);
           });
         });
+      },
+      updateBasketItem: function(flat, item) {
+        return $q(function(resolve, reject) {
+          $http.put(server+'/apis/flat/'+flat._id+'/basket-item/'+
+              item._id, {name: item.name}).then(function(resp) {
+
+            resolve(resp.data);
+          }).catch(function(err) {
+            reject(err);
+          });
+        });
       }
     }
   }

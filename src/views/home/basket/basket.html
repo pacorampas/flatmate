@@ -9,8 +9,11 @@
 
 <section class="fm-pane fm-content gap-bottom scroll">
   <ul class="fm-list">
-    <li ng-repeat="item in session.flat.basket" class="fm-list-item">
+    <li ng-repeat="item in session.flat.basket" class="fm-list-item has-item"
+        ng-click="goToEditBasketItem(item)">
+
       {{item.name}}
+      <i class="fm-list-icon fa fa-angle-right"></i>
     </li>
   </ul>
 </section>

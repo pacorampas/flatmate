@@ -118,6 +118,16 @@
           }
         }
       })
+      .state('edit-basket-item', {
+        url: '/edit-basket-item/:basketItemId',
+        templateUrl: 'views/flat/basket/edit-basket-item.html',
+        controller: 'editBasketItemController',
+        resolve: {
+          isloggedIn: function($rootScope, userFactory) {
+            return userFactory.isLoggedIn();
+          }
+        }
+      })
       .state('home.home-tasks.edit-task', {
         url: '/edit-task/:taskId',
         templateUrl: 'views/flat/task/edit-task.html',
