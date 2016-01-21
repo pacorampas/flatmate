@@ -152,6 +152,23 @@
             reject(err);
           });
         });
+      },
+      deleteBasketItem: function(flat, item) {
+        return $q(function(resolve, reject) {
+          $http.delete(server+'/apis/flat/'+flat._id+'/basket-item/'+ item._id)
+              .then(function(resp) {
+
+            var basket = $rootScope.session.flat.basket;
+            for(var i = 0; i < basket.length; i++) {
+              if (basket[i]._id == item._id) {
+                basket.splice(i, 1);
+              }
+            }
+            resolve(resp.data);
+          }).catch(function(err) {
+            reject(err);
+          });
+        });
       }
     }
   }

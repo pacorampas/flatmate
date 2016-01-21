@@ -40,6 +40,17 @@
       });
     }
 
+    $scope.delete = function() {
+      //TODO catch errors
+      $scope.flatFactory.deleteBasketItem($rootScope.session.flat,
+          $scope.editBasketItem).then(function(resp) {
+
+        $scope.$location.path('home/basket');
+      }).catch(function(err) {
+        console.log(err);
+      });
+    }
+
     function activate() {
       $scope.basketItem = basketItemService.get();
       $scope.editBasketItem = angular.copy($scope.basketItem);
